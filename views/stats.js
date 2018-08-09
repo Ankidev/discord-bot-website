@@ -134,6 +134,7 @@
 		var statdiv = $('.stats-total-table');
         statdiv.empty();
         $('<tr>').append(
+			$('<th>').text(''),
 			$('<th>').text('Cluster ID'),
 			$('<th>').text('Shards'),
 			$('<th>').text('Servers'),
@@ -145,6 +146,7 @@
 		).appendTo(statdiv);
 
         $('<tr>').append(
+			$('<td>').text(''),
 			$('<td>').text('TOTAL'),
 			$('<td>').text(
 					data.clusters.map(x => x.shards).reduce((p, n) => p + n)
@@ -159,6 +161,7 @@
 
 		$.each(data.clusters, function(i, item) {
 			$('<tr>').append(
+				$(item.guilds > 0 ? '<td style=color:lightgreen>' : '<td style=color:red>').text('●'),
 				$('<td>').text(item.cluster),
 				$('<td>').text(item.shards),
 				$('<td>').text(item.guilds),
