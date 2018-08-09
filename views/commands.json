@@ -1,0 +1,558 @@
+[ 
+	{
+		"name": "General Commands",
+		"color": "#ff6666",
+		"commands": [
+			{
+				"name": "help",
+				"args": "[command]",
+				"description": "get general help info, or specific command help",
+				"examples": [
+					">help",
+					">help hangman"
+				]
+			},
+			{
+				"name": "vote",
+				"args": "",
+				"description": "get a link to vote for tombot",
+				"examples": [
+					">vote"
+				]
+			},
+			{
+				"name": "profile",
+				"args": "[@mention]",
+				"description": "view profiles. use a mention to see a specific user, or no mention to see your own.",
+				"examples": [
+					">profile",
+					">profile @Somebody"
+				]
+			},
+			{
+				"name": "top",
+				"args": "[page]",
+				"description": "show points scoreboard",
+				"examples": [
+					">top"
+				]
+			},
+			{
+				"name": "send",
+				"args": "<@mention> <number>",
+				"description": "send points to somebody",
+				"examples": [
+					">send @somebody 50"
+				]
+			}
+		]
+	},
+	{
+		"name": "Music Commands",
+		"color": "#ff99ff",
+		"commands": [
+			{
+				"name": "play",
+				"args": "<URL or search terms>",
+				"description": "play music from a link or search terms",
+				"examples": [
+					">play darude sandstorm",
+					">play https://youtu.be/y6120QOlsfU",
+					">play spotify:user:spotify:playlist:37i9dQZF1DXcBWIGoYBM5M",
+					">play https://soundcloud.com/50_cent/body-bags",
+					">play https://twitch.tv/monstercat"
+				]
+			},
+			{
+				"name": "pause",
+				"args": "",
+				"description": "pause song",
+				"examples": [
+					">pause"
+				]
+			},
+			{
+				"name": "resume",
+				"args": "",
+				"description": "unpause song",
+				"examples": [
+					">resume"
+				]
+			},
+			{
+				"name": "seek",
+				"args": "<HH:mm:ss>",
+				"description": "Seek to a timestamp in the currently playing song",
+				"examples": [
+					">seek 18",
+					">seek 2:30",
+					">seek 1:02:35"
+				]
+			},
+			{
+				"name": "queue",
+				"args": "[number]",
+				"description": "see music queue",
+				"examples": [
+					">queue",
+					">queue 5"
+				]
+			},
+			{
+				"name": "queue-remove",
+				"args": "<number> [number]",
+				"description": "remove items from music queue. either a single item, or an inclusive range",
+				"examples": [
+					">queue-remove 5",
+					">queue-remove 3 5"
+				]
+			},
+			{
+				"name": "skip",
+				"args": "",
+				"description": "skip current song",
+				"examples": [
+					">skip"
+				]
+			},
+			{
+				"name": "summon",
+				"args": "",
+				"description": "summon the bot to another channel",
+				"examples": [
+					">summon"
+				]
+			},
+			{
+				"name": "np",
+				"args": "",
+				"description": "see what is currently playing",
+				"examples": [
+					">np"
+				]
+			},
+			{
+				"name": "stop",
+				"args": "",
+				"description": "stop music and clear the queue",
+				"examples": [
+					">stop"
+				]
+			},
+			{
+				"name": "loop",
+				"args": "",
+				"description": "toggle queue looping",
+				"examples": [
+					">loop"
+				]
+			},
+			{
+				"name": "shuffle",
+				"args": "",
+				"description": "shuffle the queue",
+				"examples": [
+					">shuffle"
+				]
+			}
+		]
+	},
+	{
+		"name": "Playlist Commands",
+		"color": "#80bfff",
+		"commands": [
+			{
+				"name": "playlist-list",
+				"args": "",
+				"description": "list playlists saved by the bot",
+				"examples": [
+					">playlist-list"
+				]
+			},
+			{
+				"name": "playlist-show",
+				"args": "<playlist name> [page]",
+				"description": "show the contents of a saved playlist",
+				"examples": [
+					">playlist-show popmusic",
+					">playlist-show popmusic 3"
+				]
+			},
+			{
+				"name": "playlist-save",
+				"args": "<playlist name>",
+				"description": "save a new playlist",
+				"examples": [
+					">playlist-save popmusic"
+				]
+			},
+			{
+				"name": "playlist-load",
+				"args": "<playlist name>",
+				"description": "load an existing playlist",
+				"examples": [
+					">playlist-load popmusic"
+				]
+			},
+			{
+				"name": "playlist-create",
+				"args": "<playlist name>",
+				"description": "create a new, blank playlist",
+				"examples": [
+					">playlist-create potato"
+				]
+			},
+			{
+				"name": "playlist-add",
+				"args": "<playlist name> [index] <url/search terms>",
+				"description": "add music to an existing playlist. Either append it on the end, or specity a position to insert instead.",
+				"examples": [
+					">playlist-add potato the duck song"
+				]
+			},
+			{
+				"name": "playlist-remove",
+				"args": "<playlist name> [starting index] [amount]",
+				"description": "remove items from a playlist.",
+				"examples": [
+					">playlist-remove potato 3 1"
+				]
+			},
+			{
+				"name": "playlist-export",
+				"args": "<playlist name>",
+				"description": "get the share code for a playlist. import it again on any server with TomBot!",
+				"examples": [
+					">playlist-export popmusic"
+				]
+			},
+			{
+				"name": "playlist-import",
+				"args": "<share code>",
+				"description": "import a playlist from a share code",
+				"examples": [
+					">playlist-import 735dfab1524655f95684dab8f6838cf2"
+				]
+			}
+		]
+	},
+	{
+		"name": "Config Commands",
+		"color": "#ffcc66",
+		"commands": [
+			{
+				"name": "config",
+				"args": "",
+				"description": "see all current bot configs",
+				"examples": [
+					">config"
+				]
+			},
+			{
+				"name": "config-prefix",
+				"args": "[new prefix]",
+				"description": "see or change bot prefix",
+				"examples": [
+					"@TomBot config-prefix",
+					"@TomBot config-prefix !"
+				]
+			},
+			{
+				"name": "config-np",
+				"args": "",
+				"description": "toggle now playing messages",
+				"examples": [
+					">config-np"
+				]
+			},
+			{
+				"name": "config-channel",
+				"args": "",
+				"description": "change the channel of now playing messages to the current channel",
+				"examples": [
+					">config-channel"
+				]
+			},
+			{
+				"name": "config-voteskip",
+				"args": "",
+				"description": "toggle vote skipping",
+				"examples": [
+					">config-voteskip"
+				]
+			},
+			{
+				"name": "config-queue",
+				"args": "<number>",
+				"description": "change queue size",
+				"examples": [
+					">config-queue 50"
+				]
+			},
+			{
+				"name": "config-pick",
+				"args": "",
+				"description": "toggle song picking. when disabled, play command always picks first search result if you are searching for youtube videos",
+				"examples": [
+					">config-pick"
+				]
+			}
+		]
+	},
+	{
+		"name": "Game Commands",
+		"color": "#ccff99",
+		"commands": [
+			{
+				"name": "hangman",
+				"args": "",
+				"description": "start hangman game",
+				"examples": [
+					">hangman"
+				]
+			},
+			{
+				"name": "word",
+				"args": "<word>",
+				"description": "guess a word",
+				"examples": [
+					">word potato",
+					">word discord"
+				]
+			},
+			{
+				"name": "letter",
+				"args": "<letter>",
+				"description": "guess a letter",
+				"examples": [
+					">letter a",
+					">letter k"
+				]
+			},
+			{
+				"name": "guesses",
+				"args": "",
+				"description": "show all guesses",
+				"examples": [
+					">guesses"
+				]
+			},
+			{
+				"name": "hangman-stop",
+				"args": "",
+				"description": "end hangman game",
+				"examples": [
+					">hangman-stop"
+				]
+			},
+			{
+				"name": "cah",
+				"args": "[card number]",
+				"description": "start or join cards against humanity game, or pick a card during a round",
+				"examples": [
+					">cah"
+				]
+			},
+			{
+				"name": "cah-stop",
+				"args": "",
+				"description": "force stop cards against humanity game",
+				"examples": [
+					">cah-stop"
+				]
+			},
+			{
+				"name": "cah-kick",
+				"args": "@somebody",
+				"description": "kick somebody from cards against humanity game",
+				"examples": [
+					">cah-kick @somebody"
+				]
+			},
+			{
+				"name": "c4",
+				"args": "",
+				"description": "start or join connect 4 game",
+				"examples": [
+					">c4"
+				]
+			},
+			{
+				"name": "c4-stop",
+				"args": "",
+				"description": "force stop connect4 game",
+				"examples": [
+					">c4-stop"
+				]
+			},
+			{
+				"name": "blackjack",
+				"args": "[bet]",
+				"description": "start or join blackjack game. 4 reaction options: hit, stand, double or surrender. play with or without a bet.",
+				"examples": [
+					">blackjack",
+					">blackjack 100"
+				]
+			}
+		]
+	},
+	{
+		"name": "OSRS Commands",
+		"color": "#cc9900",
+		"commands": [
+			{
+				"name": "osrs-ge",
+				"args": "<item name>",
+				"description": "get oldschool runescape grand exchange information for an item",
+				"examples": [
+					">osrs-ge armadyl godsword",
+					">osrs-ge nature rune"
+				]
+			},
+			{
+				"name": "osrs-hs",
+				"args": "<display name>",
+				"description": "get oldschool runescape highscores data and combat level",
+				"examples": [
+					">osrs-hs zezima",
+					">osrs-hs lynx titan"
+				]
+			},
+			{
+				"name": "osrs-wiki",
+				"args": "<search terms>",
+				"description": "get oldschool runescape wiki article information",
+				"examples": [
+					">osrs-wiki strength cape",
+					">osrs-wiki armadyl godsword"
+				]
+			}
+		]
+	},
+	{
+		"name": "Misc Commands",
+		"color": "#33cc33",
+		"commands": [
+			{
+				"name": "ow",
+				"args": "<battletag> <mode> [hero] [category]",
+				"description": "get overwatch stats. battletags are case sensitive.<br>can either pick a battletag and mode for a quick overview, or add a hero and category for in-depth stats.<br>modes: competitive|quickplay<br>categories: specific|combat|assists|best|average|game|awards|miscellaneous",
+				"examples": [
+					">ow xQc#11273 competitive",
+					">ow xQc#11273 quickplay",
+					">ow xQc#11273 competitive winston combat",
+					">ow xQc#11273 competitive overall game"
+				]
+			},
+			{
+				"name": "urban",
+				"args": "<search term>",
+				"description": "get urban dictionary definition",
+				"examples": [
+					">urban potato",
+					">urban discord"
+				]
+			},
+			{
+				"name": "minecraft",
+				"args": "",
+				"description": "see minecraft server status",
+				"examples": [
+					">minecraft"
+				]
+			},
+			{
+				"name": "emoji",
+				"args": "<text>",
+				"description": "convert text to emojis. english letters, numbers, ! and ? supported. Max 80 characters.",
+				"examples": [
+					">emoji hello world!"
+				]
+			},
+			{
+				"name": "vaporwave",
+				"args": "<text>",
+				"description": "convert text to vaporwave.",
+				"examples": [
+					">vaporwave hello world!"
+				]
+			},
+			{
+				"name": "omegalul",
+				"args": "<text>",
+				"description": "replace o's with OMEGALUL emojis.",
+				"examples": [
+					">omegalul hello world!"
+				]
+			},
+			{
+				"name": "clap",
+				"args": "<text>",
+				"description": "Add claps between words.",
+				"examples": [
+					">clap this command is cool"
+				]
+			}
+		]
+	},
+	{
+		"name": "Permissions Commands",
+		"color": "#e6e6e6",
+		"commands": [
+			{
+				"name": "perms",
+				"args": "<@mention> <command> <true/false>",
+				"description": "change permissions for a user to a command",
+				"examples": [
+					">perms @somebody stop true",
+					">perms @somebody hangman false"
+				]
+			},
+			{
+				"name": "perms",
+				"args": "<@mention>admin",
+				"description": "make a user admin. anyone with perms command permissions can use this.",
+				"examples": [
+					">perms @somebody admin"
+				]
+			},
+			{
+				"name": "perms",
+				"args": "<@mention>show",
+				"description": "see all permissions of a user",
+				"examples": [
+					">perms @somebody show"
+				]
+			},
+			{
+				"name": "perms",
+				"args": "<command> default <true/false>",
+				"description": "change default permissions for a command",
+				"examples": [
+					">perms play default false",
+					">perms stop default true"
+				]
+			},
+			{
+				"name": "perms",
+				"args": "[@mention | command] wipe",
+				"description": "wipe permissions for a user, command or everything",
+				"examples": [
+					">perms @somebody wipe",
+					">perms stop wipe",
+					">perms wipe"
+				]
+			},
+			{
+
+				"name": "perms",
+				"args": "<command>",
+				"description": "view current command permissions",
+				"examples": [
+					">perms list",
+					">perms stop"
+				]
+			}
+		]
+	}
+]
