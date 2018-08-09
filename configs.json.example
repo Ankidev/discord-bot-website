@@ -8,5 +8,6 @@
 		"sessionSecret": "xxxxxxxxxxxxxxxxxxxxx",
 		"inviteURL": "https://discordapp.com/oauth2/authorize?xxxxxxxxxxxxxxxxxxxxx",
 		"supportURL": "https://discord.gg/xxxxxxxxxxxxxxxxxxxxx",
-		"voteURL": "https://discordbots.org/bot/xxxxxxxxxxxxxxxxxxxxx/vote"
+		"voteURL": "https://discordbots.org/bot/xxxxxxxxxxxxxxxxxxxxx/vote",
+		"githubURL": ""
 }

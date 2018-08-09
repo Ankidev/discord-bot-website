@@ -76,7 +76,7 @@ app.get('/callback',
     passport.authenticate('discord', { failureRedirect: '/' }),
 	(req, res) => { res.redirect('/dashboard') } // auth success
 );
-app.get('/logout', function(req, res) {
+app.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
@@ -109,14 +109,23 @@ app.get('/faq', (req, res) => {
         user: req.user
     });
 });
-app.get('/vote', function(req, res) {
+app.get('/vote', (req, res) => {
     res.redirect(configs.voteURL);
 });
-app.get('/support', function(req, res) {
+app.get('/support', (req, res) => {
     res.redirect(configs.supportURL);
 });
-app.get('/invite', function(req, res) {
+app.get('/invite', (req, res) => {
     res.redirect(configs.inviteURL);
+});
+app.get('/github', (req, res) => {
+    res.redirect(configs.githubURL);
+});
+app.get('*'), (req, res) => {
+	res.render('404', {
+		cache: true,
+        user: req.user
+    });
 });
 /*
 app.get('/api/guilds/*', checkAuth, async(req, res) => {
