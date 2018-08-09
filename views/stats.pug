@@ -1,0 +1,22 @@
+html(style='background-color:#2C2F33;color:white')
+	head
+		include head.pug
+		title TomBot Stats
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		include stats.js
+	body
+		div(class='wrapper')
+			include navbar.pug
+			div(class='info-container' id='info-container')
+				div(style='display:block;overflow-x:auto;')
+					table(class='stats-total-table' style='text-align:left;')
+				div(id="chartContainer1" class='chart-container')
+				div(id="chartContainer2" class='chart-container')
+				div(id="chartContainer3" class='chart-container')
+				div(id="chartContainer4" class='chart-container')
+				div(id="chartContainer5" class='chart-container')
+				div(id="chartContainer6" class='chart-container')
+				div(id="chartContainer7" class='chart-container')
+				div(id="chartContainer8" class='chart-container')

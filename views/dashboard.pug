@@ -1,0 +1,17 @@
+html(style='background-color:#2C2F33;color:white')
+	head
+		include head.pug
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		include api.js
+		title TomBot Dashboard
+	body
+		div(class='wrapper')
+			include navbar.pug
+			div(class='sidebar')
+				each server in user.guilds
+					div(class='icon-container-left')
+						object(data-attribute=server.id class='sidebar-icon-radius' width=50 height=50 data=(server.icon!=null?'https://cdn.discordapp.com/icons/'+server.id+'/'+server.icon+'.png':'https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png') type='image/png')
+			div(class='info-container offset')
+				h1 Server Info - THIS IS ONLY A BETA TEST. NO FUNCTIONALITY YET.
+				p(class='server-info')
+		

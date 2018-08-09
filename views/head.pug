@@ -1,0 +1,143 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+<link rel="shortcut icon" href="https://images.discordapp.net/avatars/346577085155901451/b1d87ae2fc7e191fe07bcb0332ad7961.png" type="image/x-icon">
+// twitter cards
+<meta name="twitter:card" content="TomBot">
+<meta name="twitter:site" content="https://69420.me">
+<meta name="twitter:image" content="https://img.69420.me/tombot.png">
+<meta name="twitter:title" content="TomBot - Discord bot for music & chat games">
+<meta name="twitter:description" content="Invite TomBot, join the support server and read the command list">
+// opengraph
+<meta property="og:site_name" value="TomBot">
+<meta property="og:title" content="TomBot - Discord bot for music & chat games">
+<meta property="og:url" content="https://69420.me">
+<meta property="og:description" content="Invite TomBot, join the support server and read the command list">
+<meta property="og:image" content="https://img.69420.me/tombot.png">
+style(type="text/css").
+	::-webkit-scrollbar {
+		display:none;
+	}
+	body {
+		overflow: hidden;
+		margin:0px;
+		font-family: 'Roboto Mono', monospace;
+	}
+	.navbar {
+		background-color:#23272A;
+		height:50px;
+		width:100%;
+		overflow: auto;
+		white-space: nowrap;
+	}
+	.sidebar {
+		padding:5px;
+		height:100%;
+		width: 50px;
+		position: fixed;
+		overflow-y: scroll;
+		left: 0px;
+		background-color:#23272A;
+	}
+	.info-container {
+		padding: 5px;
+		position: absolute;
+		top: 50px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow: scroll;
+		padding-right: 23px;
+		padding-bottom: 23px;
+		margin-right: -17px;
+		margin-bottom: -17px;
+	}
+	.offset {
+		left: 60px;
+	}
+	.navbar-dropdown {
+		display: none;
+		float:right;
+		margin-bottom:5px;
+	}
+	.icon-container-right {
+		float:right;
+		margin-bottom:5px;
+	}
+	.icon-container-left {
+		float:left;
+		margin-bottom:5px;
+	}
+	.navbar-container {
+		display: -webkit-flex;
+		display: flex;
+		align-items: center;
+		margin-left: 5px;
+		margin-right: 5px;
+		float: right;
+	}
+	.sidebar-icon-radius {
+	    cursor: pointer;
+		border-radius:50%;
+	}
+	.navbar-icon-radius {
+		border-radius:50%;
+		float:right;
+	}
+	.navbar-button {
+		float: right;
+		display: inline-block;
+		line-height: 50px;
+		padding-left: 10px;
+		padding-right: 10px;
+		background-color: #7289DA;
+	}
+	.home-button {
+		float: left;
+		line-height: 50px;
+		padding-left: 10px;
+		padding-right: 10px;
+		background-color: #7289DA;
+	}
+	a {
+		color:white;
+		text-decoration: none;
+	}
+	a.navbar-button:hover {
+		background-color: #7e9bff;
+	}
+	.wrapper {
+		width:100%;
+	}
+	p {
+		margin:0;
+		padding:0;
+	}
+	h1 {
+		margin:0;
+	}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	th {
+		background-color:#23272A;
+	}
+	table, th, td {
+		padding: .5rem;
+		border-bottom: 1px solid #23272A;
+	}
+	.chart-container {
+		display: inline-block;
+		width: 25%;
+		height: 450px;
+	}
+	@media screen and (max-width: 700px) {
+		.chart-container {
+			pointer-events: none;
+			width: 100%;
+			height: 350px;
+		}
+		.navbar-button {
+			float: none;
+		}
+	}
