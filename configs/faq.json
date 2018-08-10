@@ -1,0 +1,38 @@
+[
+	{
+		"question": "Q. What is TomBot?",
+		"answer": "A. TomBot is a Discord bot primarily used for playing music and chat games."
+	},
+	{
+		"question": "Q. What games does TomBot have?",
+		"answer": "A. Hangman, Cards Against Humanity, Connect 4 and Blackjack."
+	},
+	{
+		"question": "Q. What types of music can TomBot play?",
+		"answer": "A. Tombot supports YouTube(links/search), Soundcloud(track/album/set), Spotify(track/album/artist/playlist), and Twitch"
+	},
+	{
+		"question": "Q. What else can TomBot do?",
+		"answer": "A. Get Urban Dictionary definitions, show detailed Overwatch stats, Oldschool RuneScape grand exchange, wiki and highscores information, Mojang server status and more!"
+	},
+	{
+		"question": "Q. How does TomBot play from Spotify?",
+		"answer": "A. TomBot uses the Spotify API to fetch information about the track and sources the audio from YouTube."
+	},
+	{
+		"question": "Q. How do I add a playlist?",
+		"answer": "A. To play any media, use the play command. The playlist commands listed on the homepage are used to manage playlists internal to TomBot only. Please refer to the command docs for more information."
+	},
+	{
+		"question": "Q. How do I get TomBot in my Discord server?",
+		"answer": "A. Use the \"Invite\" link at the top of this page."
+	},
+	{
+		"question": "Q. I have an issue with TomBot/suggestion for TomBot, where can I get support?",
+		"answer": "A. In the TomBot support server, which you can join by using the \"Support\" link at the top of this page."
+	},
+	{
+		"question": "Q. How can I support TomBot?",
+		"answer": "A. You can support TomBot by visiting the listing websites shown below and voting for TomBot. A premium (paid) option is currently in the works and will give premium users additional features and priority support."
+	}
+]

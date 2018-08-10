@@ -9,7 +9,11 @@ const express  = require('express')
 	, socketio = require('socket.io')
 	, app      = express()
 	, server   = require('http').createServer(app)
-	, configs  = require('./configs.json');
+
+const config  = require('./configs/main.json');
+const commands = require('./configs/commands.json');
+const faq = require('./configs/faq.json');
+const widgets = require('./configs/widgets.json');
 
 const io = socketio(server, {
         'pingInterval': 40000,
@@ -18,8 +22,8 @@ const io = socketio(server, {
 });
 const historicalstats = [];
 async function sendStats() {
-    const client = await MongoClient.connect(configs.dbURL, { useNewUrlParser: true })
-    const db = client.db(configs.dbName).collection(configs.collectionName);
+    const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true })
+    const db = client.db(config.dbName).collection(config.collectionName);
 	const changeStream = db.watch();
 	changeStream.on("change", (change) => {
 		if (change.operationType === 'insert' || change.operationType === 'replace') {
@@ -48,9 +52,9 @@ passport.deserializeUser((obj, done) => {
 });
 const scopes = ['identify', 'guilds'];
 passport.use(new Strategy({
-    clientID: configs.passportClientID,
-    clientSecret: configs.passportClientSecret,
-    callbackURL: configs.passportCallbackURL,
+    clientID: config.passportClientID,
+    clientSecret: config.passportClientSecret,
+    callbackURL: config.passportCallbackURL,
     scope: scopes
 }, (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {
@@ -61,8 +65,8 @@ app.disable('x-powered-by');
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use(session({
-    secret: configs.sessionSecret,
-    store: new MongoStore({ url: configs.dbURL2 }),
+    secret: config.sessionSecret,
+    store: new MongoStore({ url: config.dbURL2 }),
     resave: false,
     saveUninitialized: false
 }));
@@ -85,8 +89,9 @@ app.get('/', (req, res) => {
 	res.render('homepage', {
 		cache: true,
         user: req.user,
-		commands: require('./views/commands.json')
-    });
+		commands: commands,
+		widgets: widgets
+});
 });
 app.get('/dashboard', checkAuth, (req, res) => {
     //console.log(req.user)
@@ -106,22 +111,24 @@ app.get('/faq', (req, res) => {
     //console.log(req.user)
 	res.render('faq', {
 		cache: true,
-        user: req.user
+        user: req.user,
+		faq: faq,
+		widgets: widgets
     });
 });
 app.get('/vote', (req, res) => {
-    res.redirect(configs.voteURL);
+    res.redirect(config.voteURL);
 });
 app.get('/support', (req, res) => {
-    res.redirect(configs.supportURL);
+    res.redirect(config.supportURL);
 });
 app.get('/invite', (req, res) => {
-    res.redirect(configs.inviteURL);
+    res.redirect(config.inviteURL);
 });
 app.get('/github', (req, res) => {
-    res.redirect(configs.githubURL);
+    res.redirect(config.githubURL);
 });
-app.get('*'), (req, res) => {
+app.get('*', (req, res) => {
 	res.render('404', {
 		cache: true,
         user: req.user
