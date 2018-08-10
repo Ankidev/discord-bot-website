@@ -122,16 +122,16 @@ app.get('/faq', (req, res) => {
     });
 });
 app.get('/vote', (req, res) => {
-    res.redirect(config.voteURL);
+    res.redirect(info.voteURL);
 });
 app.get('/support', (req, res) => {
-    res.redirect(config.supportURL);
+    res.redirect(info.supportURL);
 });
 app.get('/invite', (req, res) => {
-    res.redirect(config.inviteURL);
+    res.redirect(info.inviteURL);
 });
 app.get('/github', (req, res) => {
-    res.redirect(config.githubURL);
+    res.redirect(info.githubURL);
 });
 app.get('*', (req, res) => {
 	res.render('404', {
