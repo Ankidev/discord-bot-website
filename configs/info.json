@@ -1,0 +1,9 @@
+{
+		"botName": "TomBot",
+        "botImage": "https://images.discordapp.net/avatars/346577085155901451/b1d87ae2fc7e191fe07bcb0332ad7961.png",
+        "inviteURL": "https://discordapp.com/oauth2/authorize?client_id=346577085155901451&permissions=3435840&scope=bot",
+        "supportURL": "https://discord.gg/CZGuV2W",
+        "voteURL": "https://discordbots.org/bot/tombot/vote",
+        "githubURL": "https://github.com/fatchan"
+
+}

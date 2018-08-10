@@ -11,6 +11,7 @@ const express  = require('express')
 	, server   = require('http').createServer(app)
 
 const config  = require('./configs/main.json');
+const info  = require('./configs/info.json');
 const commands = require('./configs/commands.json');
 const faq = require('./configs/faq.json');
 const widgets = require('./configs/widgets.json');
@@ -89,6 +90,7 @@ app.get('/', (req, res) => {
 	res.render('homepage', {
 		cache: true,
         user: req.user,
+		configs: info,
 		commands: commands,
 		widgets: widgets
 });
@@ -97,6 +99,7 @@ app.get('/dashboard', checkAuth, (req, res) => {
     //console.log(req.user)
 	res.render('dashboard', {
 		cache: true,
+		configs: info,
         user: req.user
     });
 });
@@ -104,6 +107,7 @@ app.get('/stats', (req, res) => {
     //console.log(req.user)
 	res.render('stats', {
 		cache: true,
+		configs: info,
         user: req.user
     });
 });
@@ -112,6 +116,7 @@ app.get('/faq', (req, res) => {
 	res.render('faq', {
 		cache: true,
         user: req.user,
+		configs: info,
 		faq: faq,
 		widgets: widgets
     });
@@ -131,6 +136,7 @@ app.get('/github', (req, res) => {
 app.get('*', (req, res) => {
 	res.render('404', {
 		cache: true,
+		configs: info,
         user: req.user
     });
 });

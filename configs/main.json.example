@@ -1,4 +1,6 @@
 {
+        "botName": "TomBot",
+        "homeImage": "https://images.discordapp.net/avatars/346577085155901451/b1d87ae2fc7e191fe07bcb0332ad7961.png",
 		"dbURL": "mongodb://",
 		"dbURL2": "mongodb://",
 		"dbName": "xxxxx",
