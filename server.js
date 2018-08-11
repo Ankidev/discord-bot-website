@@ -73,6 +73,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+});
 app.get('/login',
 	passport.authenticate('discord', { scope: scopes }),
 	(req, res) => {}
@@ -93,7 +98,7 @@ app.get('/', (req, res) => {
 		configs: info,
 		commands: commands,
 		widgets: widgets
-});
+	});
 });
 app.get('/dashboard', checkAuth, (req, res) => {
     //console.log(req.user)
