@@ -139,7 +139,7 @@ app.get('/github', (req, res) => {
     res.redirect(info.githubURL);
 });
 app.get('*', (req, res) => {
-	res.render('404', {
+	res.status(404).render('404', {
 		cache: true,
 		configs: info,
         user: req.user
