@@ -15,16 +15,15 @@ const info  = require('./configs/info.json');
 const commands = require('./configs/commands.json');
 const faq = require('./configs/faq.json');
 const widgets = require('./configs/widgets.json');
-const io = socketio(server, { transports: ['websocket'] });
-
-io.on('connection', async(socket) => {
-	console.log('New Stats Viewer');
-    socket.emit('statstart', historicalstats);
-});
 
 async function startServer() {
 	const historicalstats = [];
-    const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true })
+	const io = socketio(server, { transports: ['websocket'] });
+	io.on('connection', async(socket) => {
+		console.log('New Stats Viewer');
+	    socket.emit('statstart', historicalstats);
+	});
+	const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true })
     const db = client.db(config.dbName).collection('stats');
 	const changeStream = db.watch();
 	changeStream.on("change", (change) => {
