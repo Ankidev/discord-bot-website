@@ -70,23 +70,25 @@ async function startServer() {
 	app.use(passport.initialize());
 	app.use(passport.session());
 
-	//need to add configs for these
 	const gsetDB = client.db(config.dbName).collection('gsets');
 	const playlistDB = client.db(config.dbName).collection('playlists');
 	const permsDB = client.db(config.dbName).collection('permissions');
 
-	app.get('/api/guilds/*', checkAuth, async(req, res) => {
+	app.get('/api/guilds/:guildid', checkAuth, async(req, res) => {
 		console.log(req.url, JSON.stringify({id: req.user.id, username: req.user.username}))
-		if (req.query.id) {
-			const ID = req.query.id;
-			const guild = req.user.guilds.find(guild => guild.id === ID);
-			if (!(await gsetDB.find({_id: guild.id}, {_id: 1}).limit(1))) {
+		if (req.params.guildid) {
+			const guild = req.user.guilds.find(guild => guild.id === req.params.guildid);
+			if (!guild) {
+				//prevent sneaky people getting info from servers they are not in
+                return res.status(403).json({error:'Unauthorized. You are not a member of that guild.'});
+            }
+			const settings = await gsetDB.findOne({_id:guild.id});
+			if (!settings) {
 				return res.json({error:'Bot not in this guild.'});
 			}
-			const settings = await gsetDB.findOne({_id:guild.id});
 			const permissions = await permsDB.findOne({_id:guild.id});
 			const playlists = await playlistDB.findOne({_id:guild.id});
-			res.json({guild:guild, settings:settings, playlists:playlists, permissions:permissions});
+			res.json({guild:guild, settings:settings.value, playlists:playlists.value, permissions:permissions.value});
 		} else {
 			res.status(400).json({error: 'Invalid request.'});
 		}

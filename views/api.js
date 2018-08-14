@@ -4,7 +4,7 @@
 			var ID = $(this).attr('data-attribute');
 			$.ajax({ 
 				type: 'GET', 
-				url: '/api/guilds/?id='+ID, 
+				url: '/api/guilds/'+ID, 
 				dataType: 'json',
 				success: function (data) {
 					$('.server-info').empty();
