@@ -15,16 +15,17 @@ const info  = require('./configs/info.json');
 const commands = require('./configs/commands.json');
 const faq = require('./configs/faq.json');
 const widgets = require('./configs/widgets.json');
+const io = socketio(server, { transports: ['websocket'] });
 
-const io = socketio(server, {
-        'pingInterval': 40000,
-        'pingTimeout': 25000,
-        transports: ['websocket']
+io.on('connection', async(socket) => {
+	console.log('New Stats Viewer');
+    socket.emit('statstart', historicalstats);
 });
-const historicalstats = [];
-async function sendStats() {
+
+async function startServer() {
+	const historicalstats = [];
     const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true })
-    const db = client.db(config.dbName).collection(config.collectionName);
+    const db = client.db(config.dbName).collection('stats');
 	const changeStream = db.watch();
 	changeStream.on("change", (change) => {
 		if (change.operationType === 'insert' || change.operationType === 'replace') {
@@ -33,129 +34,141 @@ async function sendStats() {
 				newstats.totalCpu = newstats.totalCpu/newstats.clusters.length;
 				io.emit('stats', newstats);
 				historicalstats.push(newstats);
-				if (historicalstats.length > 50) {
+				if (historicalstats.length > 100) {
 					historicalstats.shift();
 				}
 			}
 		}
 	});
-}
-sendStats();
-io.on('connection', async(socket) => {
-    socket.emit('statstart', historicalstats);
-});
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
-const scopes = ['identify', 'guilds'];
-passport.use(new Strategy({
-    clientID: config.passportClientID,
-    clientSecret: config.passportClientSecret,
-    callbackURL: config.passportCallbackURL,
-    scope: scopes
-}, (accessToken, refreshToken, profile, done) => {
-    process.nextTick(() => {
-        return done(null, profile);
-    });
-}));
-app.disable('x-powered-by');
-app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
-app.use(session({
-    secret: config.sessionSecret,
-    store: new MongoStore({ url: config.dbURL2 }),
-    resave: false,
-    saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get('/robots.txt', function (req, res) {
-    res.type('text/plain');
-    res.send("User-agent: *\nDisallow: /");
-});
-app.get('/login',
-	passport.authenticate('discord', { scope: scopes }),
-	(req, res) => {}
-);
-app.get('/callback',
-    passport.authenticate('discord', { failureRedirect: '/' }),
-	(req, res) => { res.redirect('/dashboard') } // auth success
-);
-app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
-});
-app.get('/', (req, res) => {
-    //console.log(req.user)
-	res.render('homepage', {
-		cache: true,
-        user: req.user,
-		configs: info,
-		commands: commands,
-		widgets: widgets
+	passport.serializeUser((user, done) => {
+		done(null, user);
 	});
-});
-app.get('/dashboard', checkAuth, (req, res) => {
-    //console.log(req.user)
-	res.render('dashboard', {
-		cache: true,
-		configs: info,
-        user: req.user
-    });
-});
-app.get('/stats', (req, res) => {
-    //console.log(req.user)
-	res.render('stats', {
-		cache: true,
-		configs: info,
-        user: req.user
-    });
-});
-app.get('/faq', (req, res) => {
-    //console.log(req.user)
-	res.render('faq', {
-		cache: true,
-        user: req.user,
-		configs: info,
-		faq: faq,
-		widgets: widgets
-    });
-});
-app.get('/vote', (req, res) => {
-    res.redirect(info.voteURL);
-});
-app.get('/support', (req, res) => {
-    res.redirect(info.supportURL);
-});
-app.get('/invite', (req, res) => {
-    res.redirect(info.inviteURL);
-});
-app.get('/github', (req, res) => {
-    res.redirect(info.githubURL);
-});
-app.get('*', (req, res) => {
-	res.status(404).render('404', {
-		cache: true,
-		configs: info,
-        user: req.user
-    });
-});
-/*
-app.get('/api/guilds/*', checkAuth, async(req, res) => {
-	const ID = req.url.substring(req.url.lastIndexOf('/')+1)
-	const gsets = 
-	let data = req.user.guilds.find(guild => guild.id === ID);
-	res.json(data || {error: 'Not in this server.'});
-});
-*/
-function checkAuth(req, res, next) {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/login')
+	passport.deserializeUser((obj, done) => {
+		done(null, obj);
+	});
+	const scopes = ['identify', 'guilds'];
+	passport.use(new Strategy({
+		clientID: config.passportClientID,
+		clientSecret: config.passportClientSecret,
+		callbackURL: config.passportCallbackURL,
+		scope: scopes
+	}, (accessToken, refreshToken, profile, done) => {
+		process.nextTick(() => {
+			return done(null, profile);
+		});
+	}));
+	app.disable('x-powered-by');
+	app.set("view engine", "pug");
+	app.set("views", path.join(__dirname, "views"));
+	app.use(session({
+		secret: config.sessionSecret,
+		store: new MongoStore({ url: config.dbURL2 }),
+		resave: false,
+		saveUninitialized: false
+	}));
+	app.use(passport.initialize());
+	app.use(passport.session());
+
+	//need to add configs for these
+	const gsetDB = client.db(config.dbName).collection('gsets');
+	const playlistDB = client.db(config.dbName).collection('playlists');
+	const permsDB = client.db(config.dbName).collection('permissions');
+
+	app.get('/api/guilds/*', checkAuth, async(req, res) => {
+		console.log(req.url, JSON.stringify({id: req.user.id, username: req.user.username}))
+		if (req.query.id) {
+			const ID = req.query.id;
+			const guild = req.user.guilds.find(guild => guild.id === ID);
+			if (!(await gsetDB.find({_id: guild.id}, {_id: 1}).limit(1))) {
+				return res.json({error:'Bot not in this guild.'});
+			}
+			const settings = await gsetDB.findOne({_id:guild.id});
+			const permissions = await permsDB.findOne({_id:guild.id});
+			const playlists = await playlistDB.findOne({_id:guild.id});
+			res.json({guild:guild, settings:settings, playlists:playlists, permissions:permissions});
+		} else {
+			res.status(400).json({error: 'Invalid request.'});
+		}
+	});
+
+	app.get('/robots.txt', (req, res) => {
+		res.type('text/plain');
+		res.send("User-agent: *\nDisallow: /");
+	});
+	app.get('/login',
+		passport.authenticate('discord', { scope: scopes }),
+		(req, res) => {}
+	);
+	app.get('/callback',
+		passport.authenticate('discord', { failureRedirect: '/' }),
+		(req, res) => { res.redirect('/dashboard') } // auth success
+	);
+	app.get('/logout', (req, res) => {
+		req.logout();
+		res.redirect('/');
+	});
+	app.get('/', (req, res) => {
+		//console.log(req.user)
+		res.render('homepage', {
+			cache: true,
+			user: req.user,
+			configs: info,
+			commands: commands,
+			widgets: widgets
+		});
+	});
+	app.get('/dashboard', checkAuth, (req, res) => {
+		//console.log(req.user)
+		res.render('dashboard', {
+			cache: true,
+			configs: info,
+			user: req.user
+		});
+	});
+	app.get('/stats', (req, res) => {
+		//console.log(req.user)
+		res.render('stats', {
+			cache: true,
+			configs: info,
+			user: req.user
+		});
+	});
+	app.get('/faq', (req, res) => {
+		//console.log(req.user)
+		res.render('faq', {
+			cache: true,
+			user: req.user,
+			configs: info,
+			faq: faq,
+			widgets: widgets
+		});
+	});
+	app.get('/vote', (req, res) => {
+		res.redirect(info.voteURL);
+	});
+	app.get('/support', (req, res) => {
+		res.redirect(info.supportURL);
+	});
+	app.get('/invite', (req, res) => {
+		res.redirect(info.inviteURL);
+	});
+	app.get('/github', (req, res) => {
+		res.redirect(info.githubURL);
+	});
+	app.get('*', (req, res) => {
+		res.status(404).render('404', {
+			cache: true,
+			configs: info,
+			user: req.user
+		});
+	});
+	function checkAuth(req, res, next) {
+		if (req.isAuthenticated()) return next();
+		res.redirect('/login')
+	}
+	server.listen(config.port);
+	console.log('Listening on port '+config.port);
 }
-server.listen(5000);
-console.log('Listening on port 5000')
+startServer();
+

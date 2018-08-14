@@ -4,12 +4,15 @@
 			var ID = $(this).attr('data-attribute');
 			$.ajax({ 
 				type: 'GET', 
-				url: '/api/guilds/'+ID, 
+				url: '/api/guilds/?id='+ID, 
 				dataType: 'json',
-				success: function (data) { 
+				success: function (data) {
 					$('.server-info').empty();
-					if (!data || data.error) { return; }
-					//something with the data
+					if (!data) { return; }
+					console.log(JSON.stringify(data, null, 2))
+					$('.server-info').append(
+						$('<pre>').text(JSON.stringify(data, null, 2))
+					);
 				}
 			});
 		});

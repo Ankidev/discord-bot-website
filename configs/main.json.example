@@ -2,7 +2,6 @@
 		"dbURL": "mongodb://",
 		"dbURL2": "mongodb://",
 		"dbName": "xxxxx",
-		"collectionName": "xxxxx",
 		"passportClientID": "12398074912930874",
 		"passportClientSecret": "xxxxxxxxxxxxxxxxxxxxx",
 		"sessionSecret": "xxxxxxxxxxxxxxxxxxxxx",

@@ -194,7 +194,7 @@
 				x: xindex,
 				y: cluster.cpu
 			});
-			if (dpsUsers[clustername].length > 50) {
+			if (dpsUsers[clustername].length > 100) {
 				dpsUsers[clustername].shift();
 				dpsVc[clustername].shift();
 				dpsRam[clustername].shift();
