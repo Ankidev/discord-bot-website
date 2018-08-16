@@ -1,156 +1,149 @@
 <script>
-	var charts = {};
-	var dpsUsers = {};
-	var dpsVc = {};
-	var dpsCpu = {};
-	var dpsRam = {};
-	var dpsGuilds = {};
+	var dpsUsers = [];
+	var dpsVc = [];
+	var dpsCpu = [];
+	var dpsRam = [];
+	var dpsGuilds = [];
+	var chart = new CanvasJS.Chart('chartContainer1', {
+		backgroundColor: '#2C2F33',
+		legend:{
+			cursor:"pointer",
+			fontColor: "#fff",
+			itemclick : toggleDataSeries
+		},
+/*
+		toolTip: {
+			shared: "true"
+		},
+*/
+		title:{
+			text: "Stats Graph",
+			fontFamily: 'Roboto Mono',
+			fontColor: '#fff',
+			fontSize: 16
+		},
+		data: [
+			{
+				toolTipContent: '{name} : {y}',
+				showInLegend: true,
+				visible: true,
+				type: 'spline',
+				name: 'Guilds',
+				color: '#d24cff',
+				axisYIndex: 2,
+				dataPoints: dpsGuilds
+			},
+			{
+				toolTipContent: '{name} : {y}',
+				showInLegend: true,
+				visible: true,
+				type: 'spline',
+				name: 'Users',
+				color: '#fff',
+				axisYIndex: 1,
+				dataPoints: dpsUsers
+			},
+			{
+				toolTipContent: '{name} : {y}',
+				showInLegend: true,
+				visible: true,
+				type: 'spline',
+				name: 'Streams',
+				color: '#ff0000',
+				axisYIndex: 0,
+				dataPoints: dpsVc
+			},
+			{
+				toolTipContent: '{name} : {y}MB',
+				showInLegend: true,
+				visible: true,
+				type: 'splineArea',
+				name: 'RAM',
+				color: '#00ff1d',
+				axisYType: 'secondary',
+				axisYIndex: 0,
+				dataPoints: dpsRam,
+				suffix: '%'
+			},
+			{
+				toolTipContent: '{name} : {y}%',
+				showInLegend: true,
+				visible: true,
+				type: 'splineArea',
+				name: 'CPU',
+				color: '#2693ff',
+				axisYType: 'secondary',
+				axisYIndex: 1,
+				dataPoints: dpsCpu,
+				suffix: 'GB'
+			}
+		],
+		axisY: [
+			//streams
+			{
+				gridThickness: 0,
+				tickLength: 0,
+				lineThickness: 0,
+				labelFormatter: function(){
+				  return " ";
+				},
+				interval: 2,
+				includeZero: true
+			},
+			//users
+			{
+				gridThickness: 0,
+				tickLength: 0,
+				lineThickness: 0,
+				labelFormatter: function(){
+				  return " ";
+				},
+				interval: 25,
+				includeZero: false
+			},
+			//guilds
+			{
+				gridThickness: 0,
+				tickLength: 0,
+				lineThickness: 0,
+				labelFormatter: function(){
+				  return " ";
+				},
+				interval: 10,
+				includeZero: false
+			}
+		],
+		axisY2: [
+			//ram
+			{
+				gridThickness: 0,
+				tickLength: 0,
+				lineThickness: 0,
+				labelFormatter: function(){
+				  return " ";
+				},
+				minimum: 0,
+				maximum: 32000
+			},
+			//cpu
+			{
+				gridThickness: 0,
+				tickLength: 0,
+				lineThickness: 0,
+				labelFormatter: function(){
+				  return " ";
+				},
+				minimum: 0,
+				maximum: 100
+			}
+		],
+		axisX: {
+			labelFontSize: 0
+		}
+	});
+	chart.render();
 	var socket = io({ transports: ['websocket'] });
 	socket.on('statstart', function(historicaldata) {
-		for(var i = 0; i < historicaldata[0].clusters.length; i++) {
-			var chartname = 'chartContainer'+(i+1);
-			dpsUsers[chartname] = [];
-			dpsVc[chartname] = [];
-			dpsCpu[chartname] = [];
-			dpsRam[chartname] = [];
-			dpsGuilds[chartname] = [];
-			charts[chartname] = new CanvasJS.Chart(chartname, {
-				backgroundColor: '#2C2F33',
-				legend:{
-					cursor:"pointer",
-					fontColor: "#fff",
-					itemclick : toggleDataSeries
-				},
-				toolTip: {
-					shared: "true"
-				},
-				title:{
-					text: "Cluster "+(i+1),
-					fontFamily: 'Roboto Mono',
-					fontColor: '#fff',
-					fontSize: 16
-				},
-				data: [
-					{
-						toolTipContent: '{name} : {y}',
-						showInLegend: true,
-						visible: true,
-						type: 'spline',
-						name: 'Guilds',
-						color: '#d24cff',
-						axisYIndex: 2,
-						dataPoints: dpsGuilds[chartname]
-					},
-					{
-						toolTipContent: '{name} : {y}',
-						showInLegend: true,
-						visible: true,
-						type: 'spline',
-						name: 'Users',
-						color: '#fff',
-						axisYIndex: 1,
-						dataPoints: dpsUsers[chartname]
-					},
-					{
-						toolTipContent: '{name} : {y}',
-                        showInLegend: true,
-						visible: true,
-						type: 'spline',
-						name: 'Streams',
-						color: '#ff0000',
-						axisYIndex: 0,
-						dataPoints: dpsVc[chartname]
-					},
-					{
-						toolTipContent: '{name} : {y}MB',
-                        showInLegend: true,
-						visible: true,
-						type: 'splineArea',
-						name: 'RAM',
-						color: '#00ff1d',
-						axisYType: 'secondary',
-						axisYIndex: 0,
-						dataPoints: dpsRam[chartname],
-						suffix: '%'
-					},
-					{
-						toolTipContent: '{name} : {y}%',
-                        showInLegend: true,
-						visible: true,
-						type: 'splineArea',
-						name: 'CPU',
-						color: '#2693ff',
-						axisYType: 'secondary',
-						axisYIndex: 1,
-						dataPoints: dpsCpu[chartname],
-						suffix: 'GB'
-					}
-				],
-				axisY: [
-					//streams
-					{
-						gridThickness: 0,
-						tickLength: 0,
-						lineThickness: 0,
-						labelFormatter: function(){
-						  return " ";
-						},
-						interval: 5,
-						includeZero: true
-					},
-					//users
-					{
-						gridThickness: 0,
-						tickLength: 0,
-						lineThickness: 0,
-						labelFormatter: function(){
-						  return " ";
-						},
-						interval: 25,
-						includeZero: false
-					},
-					//guilds
-					{
-						gridThickness: 0,
-						tickLength: 0,
-						lineThickness: 0,
-						labelFormatter: function(){
-						  return " ";
-						},
-						interval: 25,
-						includeZero: false
-					}
-				],
-				axisY2: [
-					//ram
-					{
-						gridThickness: 0,
-						tickLength: 0,
-						lineThickness: 0,
-						labelFormatter: function(){
-						  return " ";
-						},
-						minimum: 0,
-						maximum: 4000
-					},
-					//cpu
-					{
-						gridThickness: 0,
-						tickLength: 0,
-						lineThickness: 0,
-						labelFormatter: function(){
-						  return " ";
-						},
-						minimum: 0,
-						maximum: 100
-					}
-				],
-				axisX: {
-					labelFontSize: 0
-				}
-			});
-			charts[chartname].render();
-		}
 		var credits = document.getElementsByClassName('canvasjs-chart-credit');
 		for(var i = 0; i < credits.length; i++){
 			credits[i].innerText = '';
@@ -158,25 +151,20 @@
 		historicaldata.forEach(function(data){
 			updatechart(data, false);
 		});
-		rendercharts();
+		chart.render();
 	});
 	socket.on('stats', function(data) {
 		updatechart(data, true);
 	});
-	var rendercharts = function(){
-		for(key in charts) {
-			charts[key].render();
-		}
-	}
-	var xindex = 0;
 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
 			e.dataSeries.visible = false;
 		} else {
 			e.dataSeries.visible = true;
 		}
-		rendercharts();
+		chart.render();
 	}
+	var xindex = 0;
 	var updatechart = function(data, rend) {
 		var statdiv = $('.stats-total-table');
         statdiv.empty();
@@ -223,38 +211,35 @@
 		});
 
 		xindex++;
-		data.clusters.forEach(function(cluster, i){
-			var clustername = 'chartContainer'+(i+1);
-			dpsUsers[clustername].push({
-				x: xindex,
-				y: cluster.users
-			});
-			dpsVc[clustername].push({
-				x: xindex,
-				y: cluster.voiceConnections
-			});
-			dpsRam[clustername].push({
-				x: xindex,
-				y: Math.floor(cluster.ram)
-			});
-			dpsCpu[clustername].push({
-				x: xindex,
-				y: cluster.cpu
-			});
-			dpsGuilds[clustername].push({
-				x: xindex,
-				y: cluster.guilds
-			});
-			if (dpsUsers[clustername].length > 100) {
-				dpsUsers[clustername].shift();
-				dpsVc[clustername].shift();
-				dpsRam[clustername].shift();
-				dpsCpu[clustername].shift();
-				dpsGuilds[clustername].shift();
-			}
-		})
+		dpsUsers.push({
+			x: xindex,
+			y: data.users
+		});
+		dpsVc.push({
+			x: xindex,
+			y: data.totalVoiceConnections
+		});
+		dpsRam.push({
+			x: xindex,
+			y: Math.floor(data.totalRam)
+		});
+		dpsCpu.push({
+			x: xindex,
+			y: data.totalCpu
+		});
+		dpsGuilds.push({
+			x: xindex,
+			y: data.guilds
+		});
+		if (dpsUsers.length > 100) {
+			dpsUsers.shift();
+			dpsVc.shift();
+			dpsRam.shift();
+			dpsCpu.shift();
+			dpsGuilds.shift();
+		}
 		if (rend) {
-			rendercharts();
+			chart.render();
 		}
 	}
 </script>
