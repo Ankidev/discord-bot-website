@@ -24,7 +24,7 @@ async function startServer() {
 	    socket.emit('statstart', historicalstats);
 	});
 	const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true })
-    const db = client.db(config.dbName).collection('stats');
+    const db = client.db(config.statsDbName).collection('stats');
 	const changeStream = db.watch();
 	changeStream.on("change", (change) => {
 		if (change.operationType === 'insert' || change.operationType === 'replace') {
@@ -62,7 +62,8 @@ async function startServer() {
 	app.set("views", path.join(__dirname, "views"));
 	app.use(session({
 		secret: config.sessionSecret,
-		store: new MongoStore({ url: config.dbURL2 }),
+		store: new MongoStore({ db: client.db(config.sessionDbName2) }),
+//		store: new MongoStore({ url: config.dbURL2 }),
 		resave: false,
 		saveUninitialized: false
 	}));
