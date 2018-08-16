@@ -1,7 +1,7 @@
 {
-		"dbURL": "mongodb://",
-		"dbURL2": "mongodb://",
-		"dbName": "xxxxx",
+		"dbURL": "mongodb://user:pass@host:port/authdb",
+        "statsDbName": "xxxxxxxxxxx",
+        "sessionDbName": "xxxxxxxxxxx",
 		"passportClientID": "12398074912930874",
 		"passportClientSecret": "xxxxxxxxxxxxxxxxxxxxx",
 		"sessionSecret": "xxxxxxxxxxxxxxxxxxxxx",
