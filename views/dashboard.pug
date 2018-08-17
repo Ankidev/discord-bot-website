@@ -11,6 +11,7 @@ html
 					div(class='icon-container-left')
 						object(data-attribute=server.id class='sidebar-icon-radius' width=50 height=50 data=(server.icon!=null?'https://cdn.discordapp.com/icons/'+server.id+'/'+server.icon+'.png':'https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png') type='image/png')
 			div(class='info-container offset')
+				div(id='csrf' value=csrf style='display:none;')
 				h1 BETA - Shows info only. No editing.
 				p(class='server-info')
 		

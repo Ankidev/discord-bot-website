@@ -4,9 +4,13 @@ div(class='navbar')
 		. 
 			Home
 	if !user
-		a(class='navbar-button' href='/login') Login
+		form(class='navbar-button' style='padding:0px;' action="/login" method="post")
+			input(type='hidden' name='_csrf' value=csrf)
+			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Login' value='Login') Login
 	else 
-		a(class='navbar-button' href='/logout') Logout
+		form(class='navbar-button' style='padding:0px;' action="/logout" method="post")
+			input(type='hidden' name='_csrf' value=csrf)
+			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Logout' value='Logout') Logout
 		a(class='navbar-button' href='/dashboard') #{user.username}##{user.discriminator}
 	a(class='navbar-button' href='/faq') FAQ
 	a(class='navbar-button' href='/github') Github
