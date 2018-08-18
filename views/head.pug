@@ -1,6 +1,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 link(rel="shortcut icon" href=configs.botImage type="image/x-icon")
 meta(name="description" content=configs.botDescription)
 title #{configs.botName}
@@ -28,6 +29,9 @@ style(type="text/css").
 		overflow: hidden;
 		margin:0px;
 		font-family: 'Roboto Mono', monospace;
+	}
+	.is-active {
+		box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
 	}
 	.navbar {
 		background-color:#23272A;
@@ -98,17 +102,25 @@ style(type="text/css").
 	}
 	.navbar-button {
 		float: right;
+	    padding-top: 0px;
 		display: inline-block;
+	}
+	.home-button {
+		float: left;
+	}
+	.home-button, .navbar-button {
 		line-height: 50px;
+	}
+	.home-button, .navbar-button {
 		padding-left: 10px;
 		padding-right: 10px;
 		background-color: #7289DA;
 	}
-	.home-button {
-		float: left;
-		line-height: 50px;
-		padding-left: 10px;
-		padding-right: 10px;
+	.table-selector {
+		width:12.5%;
+		margin:0px;
+		padding:0px;
+		text-align:center;
 		background-color: #7289DA;
 	}
 	a {
@@ -120,7 +132,7 @@ style(type="text/css").
 		-webkit-transition:.3s;
 		transition:.3s;
 	}
-	a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
+	.table-selector:hover, a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
 		background-color: #7e9bff;
 	}
 	.wrapper {
@@ -141,14 +153,32 @@ style(type="text/css").
 		background-color:#23272A;
 	}
 	table, th, td {
-		padding: .5rem;
+		padding: .2rem;
 		border-bottom: 1px solid #23272A;
+	}
+	.table-selector {
+		line-height: 40px;
+		display: inline-block;
+		-o-transition:.3s;
+		-ms-transition:.3s;
+		-moz-transition:.3s;
+		-webkit-transition:.3s;
+		transition:.3s;
 	}
 	.chart-container {
 		display: inline-block;
 		width: 100%;
 		height: 500px;
 		margin-bottom:5px;
+	}
+	.middle-content {
+		margin: 0 auto;
+		width: 1024px;
+	}
+	@media screen and (max-width: 1024px) {
+		.middle-content {
+			width:100%
+		}
 	}
 	@media screen and (max-width: 700px) {
 		.chart-container {
@@ -157,5 +187,8 @@ style(type="text/css").
 		}
 		.navbar-button {
 			float: none;
+		}
+		.table-selector {
+			width:25%;
 		}
 	}

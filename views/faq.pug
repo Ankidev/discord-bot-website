@@ -5,9 +5,9 @@ html
 		div(class='wrapper')
 			include navbar.pug
 			div(class='info-container')
-				each qa in faq
-					h1 #{qa.question}
-					p #{qa.answer}
-					br
-				include widgets.pug
+				div(class='middle-content')
+					each qa in faq
+						h1 #{qa.question}
+						p #{qa.answer}
+						br
 		

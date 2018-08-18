@@ -3,12 +3,12 @@ html
 		include head.pug
 		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		include stats.js
 	body
 		div(class='wrapper')
 			include navbar.pug
 			div(class='info-container' id='info-container')
-				div(id="chartContainer1" class='chart-container')
-				div(style='display:block;overflow-x:auto;')
-					table(class='stats-total-table' style='text-align:left;')
+				div(class='middle-content')
+					div(id="chartContainer1" class='chart-container')
+					div(style='display:block;overflow-x:auto;')
+						table(class='stats-total-table' style='text-align:left;')

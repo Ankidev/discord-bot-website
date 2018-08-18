@@ -2,16 +2,16 @@ div(class='navbar')
 	a(class='home-button' href='/')
 		object(style='float:left;margin-right:10px;margin-left:-10px;' width=50 height=50 data=configs.botImage) type='image/png')
 		. 
-			Home
+			TomBot
 	if !user
-		form(class='navbar-button' style='padding:0px;' action="/login" method="post")
+		form(class='navbar-button' style='padding:0px;margin:0px;height:50px;' action="/login" method="post")
 			input(type='hidden' name='_csrf' value=csrf)
 			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Login' value='Login')
 				i(class='fas fa-sign-in-alt')
 				.
 					Login
 	else 
-		form(class='navbar-button' style='padding:0px;' action="/logout" method="post")
+		form(class='navbar-button' style='padding:0px;margin:0px;height:50px;' action="/logout" method="post")
 			input(type='hidden' name='_csrf' value=csrf)
 			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Logout' value='Logout')
 				i(class='fas fa-sign-out-alt')
@@ -45,4 +45,8 @@ div(class='navbar')
 		i(class='fas fa-robot')
 		.
 			Invite
+	a(class='navbar-button' href='/commands')
+		i(class='fas fa-terminal')
+		.
+			Commands
 

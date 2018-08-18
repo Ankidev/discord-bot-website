@@ -86,8 +86,16 @@ async function startServer() {
 			cache: false,
 			user: req.user,
 			configs: info,
-			commands: commands,
 			widgets: widgets,
+			csrf: req.csrfToken()
+		});
+	});
+	app.get('/commands', (req, res) => {
+		res.render('commands', {
+			cache: false,
+			user: req.user,
+			configs: info,
+			commands: commands,
 			csrf: req.csrfToken()
 		});
 	});

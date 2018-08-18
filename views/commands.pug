@@ -1,24 +1,10 @@
-div(style='display:block;overflow-x:auto;')
-	<table>
-		<thead>
-			<tr >
-			<th>COMMAND</th>
-			<th>ARGUMENTS</th>
-			<th>DESCRIPTION</th>
-			<th>EXAMPLE</th>
-			</tr>
-			</thead>
-		<tbody>
-		each category in commands
-			th(style='color: '+category.color) #{category.name}
-			each command in category.commands
-				tr
-					td(style='color: '+category.color) #{command.name}
-					td(style='color: '+category.color) #{command.args}
-					td(style='color: '+category.color) #{command.description}
-					td(style='color: '+category.color) 
-						each example in command.examples
-							p #{example}
-							
-	</tbody>
-</table>
+html
+	head
+		include head.pug
+	body
+		div(class='wrapper')
+			include navbar.pug
+			div(class='info-container')
+				div(class='middle-content')
+					include commandstable.pug
+					include tablescript.js

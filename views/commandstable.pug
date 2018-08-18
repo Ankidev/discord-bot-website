@@ -1,0 +1,21 @@
+div(style='display:block;overflow-x:auto;')
+	each category in commands
+		a(id='selector-'+category.name class='table-selector' href='#'+category.name) #{category.name}
+	each category in commands
+		div(style='display:block;overflow-x:auto;')
+			table(id='table-'+category.name style='display:none;')
+				thead
+					tr
+						th COMMAND
+						th ARGUMENTS
+						th DESCRIPTION
+						th EXAMPLES
+				tbody
+					each command in category.commands
+						tr
+							td(style='color: '+category.color) #{command.name}
+							td(style='color: '+category.color) #{command.args}
+							td(style='color: '+category.color) #{command.description}
+							td(style='color: '+category.color) 
+								each example in command.examples
+									p #{example}
