@@ -6,15 +6,43 @@ div(class='navbar')
 	if !user
 		form(class='navbar-button' style='padding:0px;' action="/login" method="post")
 			input(type='hidden' name='_csrf' value=csrf)
-			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Login' value='Login') Login
+			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Login' value='Login')
+				i(class='fas fa-sign-in-alt')
+				.
+					Login
 	else 
 		form(class='navbar-button' style='padding:0px;' action="/logout" method="post")
 			input(type='hidden' name='_csrf' value=csrf)
-			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Logout' value='Logout') Logout
-		a(class='navbar-button' href='/dashboard') #{user.username}##{user.discriminator}
-	a(class='navbar-button' href='/faq') FAQ
-	a(class='navbar-button' href='/github') Github
-	a(class='navbar-button' href='/stats') Stats
-	a(class='navbar-button' href='/vote') Vote
-	a(class='navbar-button' href='/support') Support
-	a(class='navbar-button' href='/invite') Invite
+			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Logout' value='Logout')
+				i(class='fas fa-sign-out-alt')
+				.
+					Logout
+		a(class='navbar-button' href='/dashboard')
+			i(class='fas fa-columns')
+			.
+				#{user.username}##{user.discriminator}
+	a(class='navbar-button' href='/faq')
+		i(class='fas fa-question-circle')
+		.
+			FAQ
+	a(class='navbar-button' href='/github')
+		i(class='fab fa-github')
+		.
+			Github
+	a(class='navbar-button' href='/stats')
+		i(class='fas fa-chart-line')
+		.
+			Stats
+	a(class='navbar-button' href='/vote')
+		i(class='fas fa-chevron-circle-up')
+		.
+			Vote
+	a(class='navbar-button' href='/support')
+		i(class='fas fa-hands-helping')
+		.
+			Support
+	a(class='navbar-button' href='/invite')
+		i(class='fas fa-robot')
+		.
+			Invite
+
