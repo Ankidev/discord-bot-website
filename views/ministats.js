@@ -1,12 +1,7 @@
 <script>
 	var socket = io({ transports: ['websocket'] });
-	socket.on('statstart', function(historicaldata) {
-		historicaldata.forEach(function(data){
-			updatechart(data);
-		});
-	});
 	socket.on('stats', function(data) {
-		updatechart(data, true);
+		updatechart(data);
 	});
 	var flash = function(elements, color) {
 		var opacity = 50;
