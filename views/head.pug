@@ -26,7 +26,7 @@ style(type="text/css").
 		color:white;
 	}
 	body {
-		overflow: hidden;
+		/*overflow: hidden;*/
 		margin:0px;
 		font-family: 'Roboto Mono', monospace;
 	}
@@ -34,17 +34,19 @@ style(type="text/css").
 		box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
 	}
 	.navbar {
+		position: fixed;
+		top: 0;
 		background-color:#23272A;
 		height:50px;
 		width:100%;
 		overflow: auto;
 		white-space: nowrap;
 	}
-	.fab {
-	    margin-right: 5px;
+	.navbar-button > .fab {
+		margin-right: 5px;
 	}
-	.fas {
-	    margin-right: 5px;
+	.navbar-button > .fas {
+		margin-right: 5px;
 	}
 	.sidebar {
 		padding:5px;
@@ -55,19 +57,13 @@ style(type="text/css").
 		left: 0px;
 		background-color:#23272A;
 	}
+	.footer {
+		background-color:#23272A;
+		padding:10px;
+		text-align: center;
+	}
 	.info-container {
 		color: #ccc;
-		padding: 5px;
-		position: absolute;
-		top: 50px;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		overflow: scroll;
-		padding-right: 23px;
-		padding-bottom: 23px;
-		margin-right: -17px;
-		margin-bottom: -17px;
 	}
 	.offset {
 		left: 60px;
@@ -101,6 +97,15 @@ style(type="text/css").
 		border-radius:50%;
 		float:right;
 	}
+	.footer-button {
+		padding-top: 0px;
+		display: inline-block;
+		line-height: 50px;
+	    width: 50px;
+		font-size:35px;
+		margin: 0 auto;
+		background-color: #7289DA;
+	}
 	.navbar-button {
 		float: right;
 	    padding-top: 0px;
@@ -133,7 +138,7 @@ style(type="text/css").
 		-webkit-transition:.3s;
 		transition:.3s;
 	}
-	.table-selector:hover, a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
+	.table-selector:hover, a.footer-button:hover, a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
 		background-color: #7e9bff;
 	}
 	.wrapper {
@@ -174,20 +179,21 @@ style(type="text/css").
 	}
 	.middle-content {
 		margin: 0 auto;
+		margin-top: 60px;
 		width: 1024px;
 	}
 	.section-content {
-		font-family: Verdana,sans-serif;
+		/*font-family: museo-sans, sans-serif;*/
+		font-style: normal;
+		font-weight: 100;
 		overflow: hidden;
 		margin-bottom: 10px;
-		margin-top: 10px;
 		padding: 10px;
 		background: #363a3f;
 	}
 	.section-text {
 		overflow: auto;
 		padding: 10px;
-		background: #363a3f;
 	}
 	.section-heading {
 		color:#fff;
@@ -195,6 +201,7 @@ style(type="text/css").
 	}
 	h2 {
 		color:#fff;
+		margin: 0;
 	}
 	hr {
 		display: block;
@@ -205,9 +212,8 @@ style(type="text/css").
 		padding: 0; 
 	}
 	li{
+		list-style-position: inside;
 		margin: 0px;
-		position: relative;
-		left: 2em;
 	}
 	@media screen and (max-width: 1024px) {
 		.middle-content {
