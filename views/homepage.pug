@@ -1,11 +1,78 @@
 html
 	head
 		include head.pug
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
 	body
 		div(class='wrapper')
 			include navbar.pug
 			div(class='info-container')
 				div(class='middle-content')
-					p Under construction!
-					include widgets.pug
-		
+					div(class='section-content')
+						h1(class='section-heading') TomBot's Stats
+						hr
+						div(style='text-align: center;')
+							div(style='display: inline-block;width:33%;margin:0;padding:0;')
+								h2(id='stats-guilds') #{stats.guilds}
+								.
+									Servers
+							div(style='display: inline-block;width:33%;margin:0;padding:0;')
+								h2(id='stats-users') #{stats.users}
+								.
+									Users
+							div(style='display: inline-block;width:33%;margin:0;padding:0;')
+								h2(id='stats-streams') #{stats.totalVoiceConnections}
+								.
+									Music Streams
+							include ministats.js
+					div(class='section-content')
+						h1(class='section-heading') Fun Games
+						hr
+						img(align='right' src='https://img.69420.me/ASWEqW17.gif' style='min-width:438;min-height:284;')
+						p(class='section-text') TomBot features some fun games you can play in chat with your friends, including:
+						ul
+							li Hangman
+							li Cards Against Humanity
+							li Blackjack
+							li Connect 4
+						p(class='section-text') Every game rewards points. Who will top the leaderboard?
+					div(class='section-content')
+						h1(class='section-heading') Robust Music Playback
+						hr
+						img(align='left' src='https://img.69420.me/dbgkIyAJ.gif' style='min-width:434;min-height:321;')
+						p(class='section-text') TomBot can play music from a variety of sources including:
+						ul
+							li Youtube
+							li SoundCloud
+							li Spotify
+							li Twitch
+						p(class='section-text') With advanced playlist management features, you can save music within TomBot, so you never have to fuss with finding links again.
+						p(class='section-text') Flip through the queue and control the music with a single reaction-based command. Save those wrists!
+					div(class='section-content')
+						h1(class='section-heading') Easy Configuration 
+						hr
+						img(align='right' src='https://img.69420.me/h19dn3kf.png' style='min-width:409;min-height:280;')
+						p(class='section-text') See all your settings in a single command. Easily adjust:
+						ul
+							li Prefix
+							li Queue length
+							li Music Loop
+							li 'Now playing' Channel
+							li Vote Skip
+						p(class='section-text') All config commands have a similar format and are easy to use amd memorise.
+					div(class='section-content')
+						h1(class='section-heading') Tools & Stats
+						hr
+						img(align='left' src='https://img.69420.me/gJ8sejwZ.png' style='min-width:341;min-height:267;')
+						p(class='section-text') Helpful commands for OldSchool Runescape players:
+						ul
+							li Highscore lookup
+							li Detailed wiki info
+							li Grand exchange search
+						p(class='section-text') And more useful tools:
+						ul
+							li Minecraft server status
+							li Text covnerting
+							li Overwatch player stats
+					div(class='section-content')
+						p(class='section-text' style='text-align: center') Like what you see? Vote for TomBot:
+						include widgets.pug

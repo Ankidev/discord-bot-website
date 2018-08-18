@@ -56,6 +56,7 @@ style(type="text/css").
 		background-color:#23272A;
 	}
 	.info-container {
+		color: #ccc;
 		padding: 5px;
 		position: absolute;
 		top: 50px;
@@ -175,6 +176,39 @@ style(type="text/css").
 		margin: 0 auto;
 		width: 1024px;
 	}
+	.section-content {
+		font-family: Verdana,sans-serif;
+		overflow: hidden;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		padding: 10px;
+		background: #363a3f;
+	}
+	.section-text {
+		overflow: auto;
+		padding: 10px;
+		background: #363a3f;
+	}
+	.section-heading {
+		color:#fff;
+		text-align:center;
+	}
+	h2 {
+		color:#fff;
+	}
+	hr {
+		display: block;
+		height: 1px;
+		border: 0;
+		border-top: 1px solid #ccc;
+		margin: 1em 0;
+		padding: 0; 
+	}
+	li{
+		margin: 0px;
+		position: relative;
+		left: 2em;
+	}
 	@media screen and (max-width: 1024px) {
 		.middle-content {
 			width:100%
@@ -187,6 +221,9 @@ style(type="text/css").
 		}
 		.navbar-button {
 			float: none;
+		}
+		.section-text {
+			display:inline-block;
 		}
 		.table-selector {
 			width:25%;
