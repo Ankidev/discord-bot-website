@@ -13,9 +13,9 @@ div(style='display:block;overflow-x:auto;')
 				tbody
 					each command in category.commands
 						tr
-							td(style='color: '+category.color) #{command.name}
+							td(style='white-space:nowrap;color: '+category.color) #{command.name}
 							td(style='color: '+category.color) #{command.args}
 							td(style='color: '+category.color) #{command.description}
-							td(style='color: '+category.color) 
+							td(style='white-space:nowrap;color: '+category.color) 
 								each example in command.examples
 									p #{example}

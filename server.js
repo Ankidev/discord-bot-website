@@ -21,7 +21,7 @@ const widgets = require('./configs/widgets.json');
 
 async function startServer() {
 	const scopes = ['identify', 'guilds'];
-	const historicalstats = [];
+	let historicalstats = [];
 	const io = socketio(server, { transports: ['websocket'] });
 	io.on('connection', async(socket) => {
 	    socket.emit('statstart', historicalstats);
@@ -38,8 +38,11 @@ async function startServer() {
 				const newstats = change.fullDocument.value;
 				newstats.totalCpu = newstats.totalCpu/newstats.clusters.length;
 				io.emit('stats', newstats);
+				if(!historicalstats) {
+					historicalstats = new Array(150).fill(newstats);
+				}
 				historicalstats.push(newstats);
-				if (historicalstats.length > 100) {
+				if (historicalstats.length > 150) {
 					historicalstats.shift();
 				}
 			}
@@ -87,7 +90,8 @@ async function startServer() {
 			user: req.user,
 			configs: info,
 			widgets: widgets,
-			csrf: req.csrfToken()
+			csrf: req.csrfToken(),
+			stats: historicalstats[historicalstats.length-1]
 		});
 	});
 	app.get('/commands', (req, res) => {

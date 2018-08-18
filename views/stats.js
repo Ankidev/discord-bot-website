@@ -231,7 +231,7 @@
 			x: xindex,
 			y: data.guilds
 		});
-		if (dpsUsers.length > 100) {
+		if (dpsUsers.length > 150) {
 			dpsUsers.shift();
 			dpsVc.shift();
 			dpsRam.shift();
