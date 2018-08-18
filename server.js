@@ -83,7 +83,7 @@ async function startServer() {
 	}))
 	app.get('/', (req, res) => {
 		res.render('homepage', {
-			cache: true,
+			cache: false,
 			user: req.user,
 			configs: info,
 			commands: commands,
@@ -171,7 +171,7 @@ async function startServer() {
 		if (req.isAuthenticated()) {
 			return next();
 		} else {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 	}
 	async function dashboardGuildCheck(req, res, next) {
