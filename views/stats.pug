@@ -9,7 +9,11 @@ html
 			include navbar.pug
 			div(class='info-container' id='info-container')
 				div(class='middle-content')
-					div(id="chartContainer1" class='chart-container')
-					div(style='display:block;overflow-x:auto;')
-						table(class='stats-total-table' style='text-align:left;')
+					div(class='section')
+						h1(class='section-heading') TomBot Stats
+						hr
+						div(class='section-content')
+							div(id="chartContainer1" class='chart-container')
+							div(style='display:block;overflow-x:auto;height:288px;')
+								table(class='stats-total-table' style='text-align:left;')
 		include footer.pug

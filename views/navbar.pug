@@ -21,14 +21,7 @@ div(class='navbar')
 			i(class='fas fa-columns')
 			.
 				#{user.username}##{user.discriminator}
-	a(class='navbar-button' href='/faq')
-		i(class='fas fa-question-circle')
-		.
-			FAQ
-	a(class='navbar-button' href='/stats')
-		i(class='fas fa-chart-line')
-		.
-			Stats
+	div(class='navbar-space')
 	a(class='navbar-button' href='/vote')
 		i(class='fas fa-chevron-circle-up')
 		.
@@ -41,8 +34,17 @@ div(class='navbar')
 		i(class='fas fa-robot')
 		.
 			Invite
+	div(class='navbar-space')
 	a(class='navbar-button' href='/commands')
 		i(class='fas fa-terminal')
 		.
 			Commands
+	a(class='navbar-button' href='/faq')
+		i(class='fas fa-question-circle')
+		.
+			FAQ
+	a(class='navbar-button' href='/stats')
+		i(class='fas fa-chart-line')
+		.
+			Stats
 

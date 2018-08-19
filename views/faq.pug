@@ -6,8 +6,12 @@ html
 			include navbar.pug
 			div(class='info-container')
 				div(class='middle-content')
-					each qa in faq
-						h1 #{qa.question}
-						p #{qa.answer}
-						br
+					div(class='section')
+						h1(class='section-heading') Frequently Asked Questions
+						hr
+						div(class='section-content')
+							each qa in faq
+								h3 #{qa.question}
+								p #{qa.answer}
+								br
 		include footer.pug

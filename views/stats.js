@@ -15,13 +15,13 @@
 		toolTip: {
 			shared: "true"
 		},
-*/
 		title:{
 			text: "Stats Graph",
 			fontFamily: 'Roboto Mono',
 			fontColor: '#fff',
 			fontSize: 16
 		},
+*/
 		data: [
 			{
 				toolTipContent: '{name} : {y}',
