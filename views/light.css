@@ -1,0 +1,35 @@
+	html {
+		color:black;
+	}
+	.navbar {
+		background-color:#F1F1F1;
+		box-shadow: 0 0 3px 0 black;
+	}
+	.sidebar {
+		background-color:#F1F1F1;
+	}
+	.footer {
+
+	}
+	.footer-button {
+		color: black;
+	}
+	.footer-button:hover {
+		color: #6cc644;
+	}
+	.home-button, .navbar-button {
+		background-color: #7289DA;
+	}
+	.table-selector {
+		background-color: #7289DA;
+	}
+	.table-selector:hover, a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
+		background-color: #7e9bff;
+	}
+	.section {
+		box-shadow: 0px 3px 3px -3px black;
+		background: #f1f1f1;
+	}
+	h2 {
+		color:#7289DA;
+	}

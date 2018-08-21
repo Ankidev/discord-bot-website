@@ -3,7 +3,7 @@ div(style='display:block;overflow-x:auto;')
 		a(id='selector-'+category.name class='table-selector' href='#'+category.name) #{category.name}
 	each category in commands
 		div(style='display:block;overflow-x:auto;')
-			table(id='table-'+category.name style='display:none;')
+			table(id='table-'+category.name style='display:none;/*color:#ccc;*/')
 				thead
 					tr
 						th COMMAND
@@ -13,9 +13,9 @@ div(style='display:block;overflow-x:auto;')
 				tbody
 					each command in category.commands
 						tr
-							td(style='white-space:nowrap;color: '+category.color) #{command.name}
-							td(style='color: '+category.color) #{command.args}
-							td(style='color: '+category.color) #{command.description}
-							td(style='white-space:nowrap;color: '+category.color) 
+							td(style='white-space:nowrap;') #{command.name}
+							td #{command.args}
+							td #{command.description}
+							td(style='white-space:nowrap') 
 								each example in command.examples
 									p #{example}

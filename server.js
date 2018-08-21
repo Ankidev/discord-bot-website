@@ -12,6 +12,7 @@ const express  = require('express')
 	, helmet = require('helmet')
 	, csrf = require('csurf')
 	, bodyParser = require('body-parser')
+	, cookieParser = require('cookie-parser')
 
 const config  = require('./configs/main.json');
 const info  = require('./configs/info.json');
@@ -65,6 +66,7 @@ async function startServer() {
 		});
 	}));
 	app.set("view engine", "pug");
+	app.use(express.static(path.join(__dirname, 'views')));
 	app.set("views", path.join(__dirname, "views"));
 	app.use(session({
 		secret: config.sessionSecret,
@@ -74,10 +76,11 @@ async function startServer() {
 	}));
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(bodyParser.json())
+	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({
 		extended: false
 	}))
+	app.use(cookieParser());
 	app.use(helmet({
 		frameguard: false //allow for discord bot listing sites
 	}))
@@ -87,16 +90,18 @@ async function startServer() {
 	app.get('/', (req, res) => {
 		res.render('homepage', {
 			cache: true,
+			style: req.cookies.style ? req.cookies.style : 'light',
 			user: req.user,
 			configs: info,
-			widgets: widgets,
 			csrf: req.csrfToken(),
+			widgets: widgets,
 			stats: historicalstats[historicalstats.length-1]
 		});
 	});
 	app.get('/commands', (req, res) => {
 		res.render('commands', {
 			cache: true,
+			style: req.cookies.style ? req.cookies.style : 'light',
 			user: req.user,
 			configs: info,
 			commands: commands,
@@ -106,6 +111,7 @@ async function startServer() {
 	app.get('/dashboard', checkAuth, (req, res) => {
 		res.render('dashboard', {
 			cache: true,
+			style: req.cookies.style ? req.cookies.style : 'light',
 			configs: info,
 			user: req.user,
 			csrf: req.csrfToken()
@@ -113,7 +119,8 @@ async function startServer() {
 	});
 	app.get('/stats', (req, res) => {
 		res.render('stats', {
-			cache: true,
+			style: req.cookies.style ? req.cookies.style : 'light',
+			cache: false,
 			configs: info,
 			user: req.user,
 			csrf: req.csrfToken()
@@ -122,6 +129,7 @@ async function startServer() {
 	app.get('/faq', (req, res) => {
 		res.render('faq', {
 			cache: true,
+			style: req.cookies.style ? req.cookies.style : 'light',
 			user: req.user,
 			configs: info,
 			faq: faq,
@@ -147,7 +155,7 @@ async function startServer() {
 	});
 	app.get('/robots.txt', (req, res) => {
 		res.type('text/plain');
-		res.send('User-agent: *\nDisallow: /');
+		res.send('User-agent: *\nDisallow:');
 	});
 	app.get('/api/guilds/:guildid', checkAuth, dashboardGuildCheck, async(req, res) => {
 		res.json({guild:res.locals.guild, settings:res.locals.settings.value, permissions:res.locals.permissions.value});
@@ -155,8 +163,9 @@ async function startServer() {
 	app.get('*', (req, res) => {
 		res.status(404).render('404', {
 			cache: true,
-			configs: info,
+			style: req.cookies.style ? req.cookies.style : 'light',
 			user: req.user,
+			configs: info,
 			csrf: req.csrfToken()
 		});
 	});

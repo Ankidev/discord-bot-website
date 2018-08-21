@@ -5,10 +5,10 @@
 	var dpsRam = [];
 	var dpsGuilds = [];
 	var chart = new CanvasJS.Chart('chartContainer1', {
-		backgroundColor: '#2C2F33',
+		backgroundColor: null,
 		legend:{
 			cursor:"pointer",
-			fontColor: "#fff",
+			fontColor: "#ccc",
 			itemclick : toggleDataSeries
 		},
 /*
@@ -39,7 +39,7 @@
 				visible: true,
 				type: 'spline',
 				name: 'Users',
-				color: '#fff',
+				color: '#ccc',
 				axisYIndex: 1,
 				dataPoints: dpsUsers
 			},
@@ -156,7 +156,12 @@
 	socket.on('stats', function(data) {
 		updatechart(data, true);
 	});
-	function toggleDataSeries(e) {
+	function newColor(color) {
+		chart.data[1].options.color = color;
+		chart.legend.options.fontColor = color;
+		chart.render();
+	}
+ 	function toggleDataSeries(e) {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
 			e.dataSeries.visible = false;
 		} else {
