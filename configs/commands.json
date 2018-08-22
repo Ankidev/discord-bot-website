@@ -64,6 +64,14 @@
 				]
 			},
 			{
+				"name": "replay",
+				"args": "",
+				"description": "start the current sgon from the beginning",
+				"examples": [
+					">replay"
+				]
+			},
+			{
 				"name": "pause",
 				"args": "",
 				"description": "pause song",

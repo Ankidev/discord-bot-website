@@ -1,7 +1,6 @@
-include main.css
-link(rel=(style=='light'?'stylesheet':'alternate stylesheet') type="text/css" title='light' href='/light.css' chartcolor='#000')
-link(rel=(style=='dark'?'stylesheet':'alternate stylesheet') type="text/css" title='dark' href='/dark.css' chartcolor='#fff')
-include styleswitcher.js
+include ./css/main.css
+link(rel=(style=='light'?'stylesheet':'alternate stylesheet') type="text/css" title='light' href='/static/css/light.css' chartcolor='#000')
+link(rel=(style=='dark'?'stylesheet':'alternate stylesheet') type="text/css" title='dark' href='/static/css/dark.css' chartcolor='#fff')
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43028377-2"></script>
 script.
 	window.dataLayer = window.dataLayer || [];
@@ -15,7 +14,7 @@ script.
 		enable_page_level_ads: true
 	});
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 link(rel="shortcut icon" href=configs.botImage type="image/x-icon")

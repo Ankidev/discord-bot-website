@@ -62,7 +62,6 @@ function saveCookie() {
 
 function togglestyle() {
 	var title = getActiveStyleSheet();
-	console.log(title)
 	if(title == 'light') {
 		setActiveStyleSheet('dark')
 	} else {
@@ -71,6 +70,7 @@ function togglestyle() {
 }
 
 window.onload = function(e) {
+	setActiveStyleSheet(getPreferredStyleSheet())
 	var button = document.getElementById('styleswitcher');
 	button.onclick = function() {
 		togglestyle();

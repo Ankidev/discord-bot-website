@@ -1,4 +1,5 @@
 <script>
+$( document ).ready(function() {
 	var dpsUsers = [];
 	var dpsVc = [];
 	var dpsCpu = [];
@@ -247,4 +248,5 @@
 			chart.render();
 		}
 	}
+});
 </script>
