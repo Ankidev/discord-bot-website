@@ -1,5 +1,4 @@
 <script>
-$( document ).ready(function() {
 	var dpsUsers = [];
 	var dpsVc = [];
 	var dpsCpu = [];
@@ -142,13 +141,14 @@ $( document ).ready(function() {
 			labelFontSize: 0
 		}
 	});
-	chart.render();
+	chart.render()
 	var socket = io({ transports: ['websocket'] });
 	socket.on('statstart', function(historicaldata) {
 		var credits = document.getElementsByClassName('canvasjs-chart-credit');
 		for(var i = 0; i < credits.length; i++){
 			credits[i].innerText = '';
 		}
+		$( "#chartContainer1" ).append("<div class='cover-trial' style='z-index: 1;width: 60px;height: 13px;left:0;bottom:0;position:absolute;'></div>")
 		historicaldata.forEach(function(data){
 			updatechart(data, false);
 		});
@@ -192,12 +192,12 @@ $( document ).ready(function() {
 			$('<td>').text(
 					data.clusters.map(x => x.shards).reduce((p, n) => p + n)
 			),
-			$('<td>').text(data.guilds),
-			$('<td>').text(data.users),
+			$('<td>').text(data.guilds.toLocaleString()),
+			$('<td>').text(data.users.toLocaleString()),
 			$('<td>').text(data.totalVoiceConnections),
 			$('<td>').text('N/A'),
 			$('<td>').text(data.totalCpu.toFixed(1) + '%'),
-			$('<td>').text(data.totalRam.toFixed(0) + 'MB')
+			$('<td>').text((data.totalRam/1000).toFixed(2) + 'GB')
         ).appendTo(statdiv);
 
 		$.each(data.clusters, function(i, item) {
@@ -205,8 +205,8 @@ $( document ).ready(function() {
 				$(item.guilds > 0 ? '<td style=color:lightgreen>' : '<td style=color:red>').text('●'),
 				$('<td>').text(item.cluster),
 				$('<td>').text(item.shards),
-				$('<td>').text(item.guilds),
-				$('<td>').text(item.users),
+				$('<td>').text(item.guilds.toLocaleString()),
+				$('<td>').text(item.users.toLocaleString()),
 				$('<td>').text(item.voiceConnections),
 				$('<td>').text(
 						(item.uptime/1000/60/60).toFixed() +'h'
@@ -248,5 +248,4 @@ $( document ).ready(function() {
 			chart.render();
 		}
 	}
-});
 </script>

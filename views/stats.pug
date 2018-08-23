@@ -12,8 +12,13 @@ html
 					div(class='section')
 						h1(class='section-heading') TomBot Stats
 						hr
-						div(class='section-content')
-							div(id="chartContainer1" class='chart-container')
+						div(class='section-content' style='text-align:center;')
+							div(id="chartContainer1" class='chart-container' style='position: relative;')
+							hr
+							h3 Tabulated Data
 							div(style='display:block;overflow-x:auto;height:288px;')
 								table(class='stats-total-table' style='text-align:left;')
+							hr
+							h3 Network Stats
+							img(src='/static/css/network.png' class='theme-reactive')
 		include footer.pug

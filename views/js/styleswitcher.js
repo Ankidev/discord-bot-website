@@ -6,9 +6,8 @@ function setActiveStyleSheet(title) {
       a.disabled = true;
       if(a.getAttribute("title") == title) {
         a.disabled = false;
-		if(typeof chart != 'undefined') {
-	        newColor(a.getAttribute('chartcolor'))
-		}
+		if(typeof chart != 'undefined')
+			newColor(a.getAttribute('chartcolor'))
         createCookie("style", title, 365);
       }
     }
@@ -69,11 +68,11 @@ function togglestyle() {
 	}
 }
 
-window.onload = function(e) {
-	setActiveStyleSheet(getPreferredStyleSheet())
+$( document ).ready(function() {
+	setActiveStyleSheet(getActiveStyleSheet());
 	var button = document.getElementById('styleswitcher');
 	button.onclick = function() {
 		togglestyle();
 	};
-}
+});
 </script>
