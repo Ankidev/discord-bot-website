@@ -510,7 +510,7 @@
 			{
 				"name": "perms",
 				"args": "<@mention> <command> <true/false>",
-				"description": "change permissions for a user to a command",
+				"description": "change permissions for a user or role to a command",
 				"examples": [
 					">perms @somebody stop true",
 					">perms @somebody hangman false"
@@ -519,7 +519,7 @@
 			{
 				"name": "perms",
 				"args": "<@mention>admin",
-				"description": "make a user admin. anyone with perms command permissions can use this.",
+				"description": "grant a user or role admin permissions (all command true). anyone with perms command permissions can use this.",
 				"examples": [
 					">perms @somebody admin"
 				]
@@ -527,7 +527,7 @@
 			{
 				"name": "perms",
 				"args": "<@mention>show",
-				"description": "see all permissions of a user",
+				"description": "see all permissions of a user or role",
 				"examples": [
 					">perms @somebody show"
 				]
@@ -544,7 +544,7 @@
 			{
 				"name": "perms",
 				"args": "[@mention | command] wipe",
-				"description": "wipe permissions for a user, command or everything",
+				"description": "wipe permissions for a user, role, command or everything",
 				"examples": [
 					">perms @somebody wipe",
 					">perms stop wipe",
