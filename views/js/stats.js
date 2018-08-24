@@ -109,7 +109,7 @@
 				labelFormatter: function(){
 				  return " ";
 				},
-				interval: 25,
+				interval: 100,
 				includeZero: false
 			}
 		],

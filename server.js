@@ -56,6 +56,7 @@ module.exports = function startServer(app, client, config) {
 	}))
 	app.use('/static/css', express.static(__dirname + '/views/css'));
 	app.use('/static/js', express.static(__dirname + '/views/js'));
+	app.use('/static/img', express.static(__dirname + '/views/img'));
 
 	//setup routes
 	const routes = require('./router.js')(client, config);
