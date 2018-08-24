@@ -18,10 +18,10 @@ module.exports = {
 	                newstats.totalCpu = newstats.totalCpu/newstats.clusters.length;
 	                io.emit('stats', newstats);
 	                if(!this.historicalstats) {
-	                    this.historicalstats = new Array(150).fill(newstats);
+	                    this.historicalstats = new Array(100).fill(newstats);
 	                }
 	                this.historicalstats.push(newstats);
-	                if (this.historicalstats.length > 150) {
+	                if (this.historicalstats.length > 100) {
 	                    this.historicalstats.shift();
 	                }
 	            }
