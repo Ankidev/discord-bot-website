@@ -2,20 +2,13 @@ div(style='display:block;overflow-x:auto;')
 	each category in commands
 		a(id='selector-'+category.name class='table-selector' href='#'+category.name) #{category.name}
 	each category in commands
-		div(style='display:block;overflow-x:auto;')
-			table(id='table-'+category.name style='display:none;/*color:#ccc;*/')
-				thead
-					tr
-						th COMMAND
-						th ARGUMENTS
-						th DESCRIPTION
-						th EXAMPLES
-				tbody
-					each command in category.commands
-						tr
-							td(style='white-space:nowrap;') #{command.name}
-							td #{command.args}
-							td #{command.description}
-							td(style='white-space:nowrap') 
-								each example in command.examples
-									p #{example}
+		div(id='table-'+category.name style='display:none;/*color:#ccc;*/')
+			each command in category.commands
+				div(class='command-info')
+					code(style='color: #ff3860;font-weight: bolder;font-size: 12pt;') #{command.name} #{command.args}
+					br
+					p #{command.description}
+					ul(style='margin-bottom:0;') Examples:
+						each example in command.examples
+							li
+								code(style='color: #ff3860;') #{example}

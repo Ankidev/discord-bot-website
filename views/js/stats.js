@@ -176,13 +176,13 @@
         statdiv.empty();
         $('<tr>').append(
 			$('<th>').text(''),
-			$('<th>').text('Cluster ID'),
+			$('<th>').text('C.ID'),
 			$('<th>').text('Shards'),
 			$('<th>').text('Servers'),
 			$('<th>').text('Users'),
 			$('<th>').text('Streams'),
 			$('<th>').text('Uptime'),
-			$('<th>').text('CPU%'),
+			$('<th>').text('CPU'),
 			$('<th>').text('RAM')
 		).appendTo(statdiv);
 

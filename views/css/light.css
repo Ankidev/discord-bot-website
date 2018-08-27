@@ -4,6 +4,9 @@
     .theme-reactive {
         filter: grayscale(100%);
     }
+	.command-info {
+		background:whitesmoke;
+	}
 	.navbar {
 		background-color:#F1F1F1;
 		box-shadow: 0 0 3px 0 black;

@@ -19,9 +19,10 @@ function togglestyle() {
 	} else {
 		setActiveStyleSheet('light')
 	}
+	setGraphLine();
 }
 
-$( document ).ready(function() {
+function setGraphLine() {
 	if ($('#chartContainer1').length >= 1 && $.cookie("style")) {
 		if ($.cookie("style") == 'dark') {
 			newColor('#fff');
@@ -29,6 +30,10 @@ $( document ).ready(function() {
 			newColor('#000');
 		}
 	}
+}
+
+$( document ).ready(function() {
+	setGraphLine();
 	var button = document.getElementById('styleswitcher');
 	button.onclick = function() {
 		togglestyle();

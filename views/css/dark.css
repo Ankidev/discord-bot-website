@@ -2,6 +2,9 @@
 		background-color:#2C2F33;
 		color:white;
 	}
+    .command-info {
+		background: #23272a3d;
+	}
     .theme-reactive {
         filter: grayscale(100%) invert(100%);
     }
