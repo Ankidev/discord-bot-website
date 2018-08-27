@@ -7,6 +7,9 @@ module.exports = {
 	start: async(server, client, config) => {
 		const io = socketio(server, { transports: ['websocket'] })
 	    const statsDB = client.db(config.statsdbName).collection('stats');
+		const firststat = await statsDB.findOne({_id:'stats'});
+		this.historicalstats = []
+		this.historicalstats.push(firststat.value);
 	    const changeStream = statsDB.watch();
 	    io.on('connection', (socket) => {
 	        socket.emit('statstart', this.historicalstats);
@@ -17,9 +20,6 @@ module.exports = {
 	                const newstats = change.fullDocument.value;
 	                newstats.totalCpu = newstats.totalCpu/newstats.clusters.length;
 	                io.emit('stats', newstats);
-	                if(!this.historicalstats) {
-	                    this.historicalstats = new Array(100).fill(newstats);
-	                }
 	                this.historicalstats.push(newstats);
 	                if (this.historicalstats.length > 100) {
 	                    this.historicalstats.shift();

@@ -10,8 +10,7 @@ const session  = require('express-session')
 	, bodyParser = require('body-parser')
 	, cookieParser = require('cookie-parser')
 
-module.exports = function startServer(app, client, config) {
-    const statsDB = client.db(config.statsdbName).collection('stats');
+module.exports = (app, client, config) => {
 
 	//passport for discord
 	passport.serializeUser((user, done) => {
