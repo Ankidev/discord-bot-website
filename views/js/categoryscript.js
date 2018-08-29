@@ -3,8 +3,8 @@
 		$('[id^=selector-]').removeClass('is-active')
 		$('#selector-' + category).addClass('is-active');
 
-		$('[id^=table-]').hide();
-        $('#table-' + category).show();
+		$('[id^=category-]').hide();
+        $('#category-' + category).show();
 
         window.location.hash = '#'+category
 	}

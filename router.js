@@ -17,7 +17,7 @@ module.exports = function(client, config) {
 		const stats = websocket.getStats()
         res.render('homepage', {
             cache: true,
-            style: req.cookies.style ? req.cookies.style : 'light',
+            style: req.cookies.style ? req.cookies.style : 'dark',
             user: req.user,
             configs: info,
             csrf: req.csrfToken(),
@@ -28,7 +28,7 @@ module.exports = function(client, config) {
     router.get('/commands', (req, res) => {
         res.render('commands', {
             cache: true,
-            style: req.cookies.style ? req.cookies.style : 'light',
+            style: req.cookies.style ? req.cookies.style : 'dark',
             user: req.user,
             configs: info,
             commands: commands,
@@ -38,7 +38,7 @@ module.exports = function(client, config) {
     router.get('/dashboard', checkAuth, (req, res) => {
         res.render('dashboard', {
             cache: true,
-            style: req.cookies.style ? req.cookies.style : 'light',
+            style: req.cookies.style ? req.cookies.style : 'dark',
             configs: info,
             user: req.user,
             csrf: req.csrfToken()
@@ -46,8 +46,8 @@ module.exports = function(client, config) {
     });
     router.get('/stats', (req, res) => {
         res.render('stats', {
-            cache: false,
-            style: req.cookies.style ? req.cookies.style : 'light',
+            cache: true,
+            style: req.cookies.style ? req.cookies.style : 'dark',
             configs: info,
             user: req.user,
             csrf: req.csrfToken()
@@ -56,7 +56,7 @@ module.exports = function(client, config) {
     router.get('/faq', (req, res) => {
         res.render('faq', {
             cache: true,
-            style: req.cookies.style ? req.cookies.style : 'light',
+            style: req.cookies.style ? req.cookies.style : 'dark',
             user: req.user,
             configs: info,
             faq: faq,
@@ -90,7 +90,7 @@ module.exports = function(client, config) {
     router.get('*', (req, res) => {
         res.status(404).render('404', {
             cache: true,
-            style: req.cookies.style ? req.cookies.style : 'light',
+            style: req.cookies.style ? req.cookies.style : 'dark',
             user: req.user,
             configs: info,
             csrf: req.csrfToken()
