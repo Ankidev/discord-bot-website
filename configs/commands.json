@@ -66,7 +66,7 @@
 			{
 				"name": "replay",
 				"args": "",
-				"description": "start the current sgon from the beginning",
+				"description": "start the current song from the beginning",
 				"examples": [
 					">replay"
 				]

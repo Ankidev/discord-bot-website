@@ -13,9 +13,12 @@
 					$('.server-info').empty();
 					if (!data) { return; }
 					//console.log(data)
-					$('.server-info').append(
-						$('<pre>').text(JSON.stringify(data, null, 2))
-					);
+					$.each(Object.keys(data.settings), function (i, item) {
+						if(data.settings[item]) {
+			                var setting = ('<ul>' + item + ': ' + data.settings[item] + '</ul>');
+			                $('.server-info').append(setting);
+						}
+		            });
 				}
 			});
 		});

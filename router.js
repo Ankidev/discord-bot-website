@@ -27,7 +27,7 @@ module.exports = function(client, config) {
     });
     router.get('/commands', (req, res) => {
         res.render('commands', {
-            cache: false,
+            cache: true,
             style: req.cookies.style ? req.cookies.style : 'light',
             user: req.user,
             configs: info,

@@ -9,7 +9,7 @@
         window.location.hash = '#'+category
 	}
 	$( document ).ready(function() {
-	    var startCategory = window.location.hash.substring(1) || 'General';
+	    var startCategory = (window.location.hash.substring(1) == '!' ? 'General' : window.location.hash.substring(1)) || 'General';
 		selectTable(startCategory)
 	});
 	$('[id^=selector-]').click(function() {
