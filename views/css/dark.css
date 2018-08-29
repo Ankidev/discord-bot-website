@@ -33,9 +33,6 @@
 	.table-selector:hover, a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
 		background-color: #7e9bff;
 	}
-	th {
-		background-color:#23272A;
-	}
 	table, th, td {
 		border-bottom: 1px solid #23272A;
 	}
