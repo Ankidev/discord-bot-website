@@ -7,78 +7,63 @@ html
 			include navbar.pug
 			div(class='info-container')
 				div(class='middle-content')
-					div(class='section')
-						h1(class='section-heading') TomBot
-						hr
-						div(style='text-align: center;')
-							div(style='display: inline-block;width:33%;margin:0;padding:0;')
-								h2(id='stats-guilds') #{stats.guilds}
-								.
-									Servers
-							div(style='display: inline-block;width:33%;margin:0;padding:0;')
-								h2(id='stats-users') #{stats.users}
-								.
-									Users
-							div(style='display: inline-block;width:33%;margin:0;padding:0;')
-								h2(id='stats-streams') #{stats.totalVoiceConnections}
-								.
-									Streams
-							include ./js/ministats.js
-					div(class='section')
-						h1(class='section-heading') Fun Games
-						hr
-						img(align='right' src='https://img.69420.me/ASWEqW17.gif' style='min-width:438;min-height:284;' class='section-image-right')
-						div(class='section-content')
-							p(class='section-text') TomBot features the following games in chat:
-							ul(style='padding:0px;')
-								li Hangman
-								li Cards Against Humanity
-								li Blackjack
-								li Connect 4
-							p(class='section-text') Every game rewards points. Who will top the leaderboard?
-					div(class='section')
-						h1(class='section-heading') Robust Music Playback
-						hr
-						img(align='left' src='https://img.69420.me/dbgkIyAJ.gif' style='min-width:434;min-height:321;' class='section-image-left')
-						div(class='section-content')
-							p(class='section-text') TomBot can play music from a variety of sources:
-							ul(style='padding:0px;')
-								li Youtube
-								li SoundCloud
-								li Spotify
-								li Twitch
-							p(class='section-text') With advanced playlist management features, you can save music within TomBot, so you never have to fuss with finding links again.
-							p(class='section-text') Flip through the queue and control the music with a single reaction-based command. Save those wrists!
-					div(class='section')
-						h1(class='section-heading') Easy Configuration 
-						hr
-						img(align='right' src='https://img.69420.me/h19dn3kf.png' style='min-width:409;min-height:280;' class='section-image-right')
-						div(class='section-content')
-							p(class='section-text') See all your settings in a single command. Easily adjust:
-							ul(style='padding:0px;')
-								li Prefix
-								li Queue length
-								li Music Loop
-								li 'Now playing' Channel
-								li Vote Skip
-							p(class='section-text') All config commands have a similar format and are easy to use and memorise.
-					div(class='section')
-						h1(class='section-heading') Tools & Stats
-						hr
-						img(align='left' src='https://img.69420.me/gJ8sejwZ.png' style='min-width:341;min-height:267;' class='section-image-left')
-						div(class='section-content')
-							p(class='section-text') Helpful commands for OldSchool Runescape players:
-							ul(style='padding:0px;')
-								li Highscore lookup
-								li Detailed wiki info
-								li Grand exchange search
-							p(class='section-text') And more useful tools:
-							ul(style='padding:0px;')
-								li Minecraft server status
-								li Text converting
-								li Overwatch player stats
-					div(class='section')
-						div(class='section-content')
-							p(class='section-text' style='text-align: center') Like what you see? Vote for TomBot:
-						include widgets.pug
+					div(class='width-wrapper' style='--data-width-wrapper:100%;')
+						div(class='section')
+							h1(class='text-align-center section-heading') TomBot
+							hr
+							div(style='text-align: center;')
+								div(style='display: inline-block;width:33%;margin:0;padding:0;')
+									h2(id='stats-guilds') #{stats.guilds}
+									.
+										Servers
+								div(style='display: inline-block;width:33%;margin:0;padding:0;')
+									h2(id='stats-users') #{stats.users}
+									.
+										Users
+								div(style='display: inline-block;width:33%;margin:0;padding:0;')
+									h2(id='stats-streams') #{stats.totalVoiceConnections}
+									.
+										Streams
+								include ./js/ministats.js
+					div(class='width-wrapper')
+						div(class='section')
+							h3(class='text-align-left section-heading') Fun Games
+							hr
+							div(class='section-content')
+								p(class='section-text') Need to spice up your server? TomBot has you covered.
+								p(class='section-text') Earn points by playing Hangman, Cards Against Humanity, Blackjack and Connect4.
+								p(class='section-text') Compete with other Tombot users and see if you can top the leaderboard.
+					div(class='width-wrapper')
+						div(class='section')
+							h3(class='text-align-left section-heading') Robust Music Playback
+							hr
+							div(class='section-content')
+								p(class='section-text') Play music from Youtube, SoundCloud, Spotify and Twitch.
+								p(class='section-text') Support for new audio sources is in the works.
+								p(class='section-text') With advanced playlist management features and endless music commands, TomBot is the last music bot you will ever need.
+					div(class='width-wrapper')
+						div(class='section')
+							h3(class='text-align-left section-heading') Easy Configuration 
+							hr
+							div(class='section-content')
+								p(class='section-text') Adjust TomBot's settings to suit your needs:
+								ul(style='padding:0px;list-style-type: circle;')
+									li Custom prefixes
+									li Queue length, vote skip, music loop
+									li Permissions for users & roles
+					div(class='width-wrapper')
+						div(class='section')
+							h3(class='text-align-left section-heading') Tools & Stats
+							hr
+							div(class='section-content')
+								p(class='section-text') OldSchool Runescape Wiki, GE and Highscores, plus:
+								ul(style='padding:0px;list-style-type: circle;')
+									li Minecraft server status
+									li Fun text commands
+									li Overwatch stats
+					div(class='width-wrapper' style='--data-width-wrapper:100%;')
+						div(class='section')
+							div(class='section-content')
+								h3(class='text-align-center section-heading' style='text-align: center;') Like what you see? Vote for TomBot:
+							include widgets.pug
 		include footer.pug
