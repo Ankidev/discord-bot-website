@@ -176,7 +176,7 @@
         statdiv.empty();
         $('<tr>').append(
 			$('<th>').text(''),
-			$('<th>').text('C.ID'),
+			$('<th>').text('Cluster'),
 			$('<th>').text('Shards'),
 			$('<th>').text('Servers'),
 			$('<th>').text('Users'),

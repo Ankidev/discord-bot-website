@@ -4,7 +4,7 @@
 		updatechart(data);
 	});
 	var flash = function(elements, color) {
-		var opacity = 50;
+		var opacity = 100;
 		var interval = setInterval(function() {
 			opacity -= 3;
 			if (opacity <= 0) clearInterval(interval);
