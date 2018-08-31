@@ -196,7 +196,7 @@
 			$('<td>').text(data.users.toLocaleString()),
 			$('<td>').text(data.totalVoiceConnections),
 			$('<td>').text('N/A'),
-			$('<td>').text(data.totalCpu.toFixed(1) + '%'),
+			$('<td>').text((data.totalCpu/data.clusters.length).toFixed(1) + '%'),
 			$('<td>').text((data.totalRam/1000).toFixed(2) + 'GB')
         ).appendTo(statdiv);
 
@@ -231,7 +231,7 @@
 		});
 		dpsCpu.push({
 			x: xindex,
-			y: data.totalCpu
+			y: data.totalCpu/data.clusters.length
 		});
 		dpsGuilds.push({
 			x: xindex,

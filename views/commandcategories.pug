@@ -1,15 +1,15 @@
-div(style='display:block;overflow-x:auto;')
+div(class='width-wrapper' style='--data-width-wrapper:100%;')
 	each category in commands
 		a(id='selector-'+category.name class='category-selector' href='#'+category.name) #{category.name}
-	each category in commands
-		div(id='category-'+category.name style='display:none;')
-			each command in category.commands
-				div(class='width-wrapper')
-					div(class='section section-tile')
-						code(style='color: #ff3860;font-weight: bolder;font-size: 12pt;') #{command.name} #{command.args}
-						br
-						p #{command.description}
-						ul(style='margin-bottom:0;') Examples:
-							each example in command.examples
-								li
-									code(style='color: #ff3860;') #{example}
+each category in commands
+	div(id='category-'+category.name style='display:none;')
+		each command in category.commands
+			div(class='width-wrapper')
+				div(class='section section-tile')
+					code(style='color: #ff3860;font-weight: bolder;font-size: 12pt;') #{command.name} #{command.args}
+					br
+					p #{command.description}
+					ul(style='margin-bottom:0;') Examples:
+						each example in command.examples
+							li
+								code(style='color: #ff3860;') #{example}

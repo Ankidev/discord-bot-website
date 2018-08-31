@@ -18,7 +18,6 @@ module.exports = {
 	        if (change.operationType === 'insert' || change.operationType === 'replace') {
 	            if (change.fullDocument._id === 'stats') {
 	                const newstats = change.fullDocument.value;
-	                newstats.totalCpu = newstats.totalCpu/newstats.clusters.length;
 	                io.emit('stats', newstats);
 	                this.historicalstats.push(newstats);
 	                if (this.historicalstats.length > 100) {

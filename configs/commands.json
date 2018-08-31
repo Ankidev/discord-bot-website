@@ -355,10 +355,12 @@
 			},
 			{
 				"name": "cah",
-				"args": "[card number]",
+				"args": "[card numbers...]",
 				"description": "start or join cards against humanity game, or pick a card during a round",
 				"examples": [
-					">cah"
+					">cah",
+					">cah 5",
+					">cah 2 6"
 				]
 			},
 			{
