@@ -9,21 +9,19 @@ module.exports = {
 	    const statsDB = client.db(config.statsdbName).collection('stats');
 		const firststat = await statsDB.findOne({_id:'stats'});
 		this.historicalstats = []
-		this.historicalstats.push(firststat.value);
+		this.historicalstats.push(firststat.value.tombot);
 	    const changeStream = statsDB.watch();
 	    io.on('connection', (socket) => {
 	        socket.emit('statstart', this.historicalstats);
 	    });
 	    changeStream.on("change", (change) => {
-	        if (change.operationType === 'insert' || change.operationType === 'replace') {
-	            if (change.fullDocument._id === 'stats') {
-	                const newstats = change.fullDocument.value;
+	        if (change.operationType === 'update' && change.updateDescription.updatedFields['value.tombot']) {
+	                const newstats = change.updateDescription.updatedFields['value.tombot'];
 	                io.emit('stats', newstats);
 	                this.historicalstats.push(newstats);
 	                if (this.historicalstats.length > 100) {
 	                    this.historicalstats.shift();
 	                }
-	            }
 	        }
 	    });
 	},

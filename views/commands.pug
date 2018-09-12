@@ -6,9 +6,9 @@ html
 			include navbar.pug
 			div(class='info-container')
 				div(class='middle-content')
-					div(class='section')
+					div(class='section' style='margin: 5px;margin-top: 55px;')
 						h1(class='section-heading') Command Docs
 						hr
 						include commandcategories.pug
-						include ./js/categoryscript.js
+						script(defer src='/static/js/categoryscript.js' type='text/javascript')
 		include footer.pug

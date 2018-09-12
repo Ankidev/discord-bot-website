@@ -1,19 +1,20 @@
+i(class="fas fa-bars navbar-toggle")
 div(class='navbar')
 	a(class='home-button' href='/')
-		object(style='float:left;margin-right:10px;margin-left:-10px;' width=50 height=50 data=configs.botImage) type='image/png')
+		object(class='home-button-icon' width=50 height=50 data=configs.botImage) type='image/png')
 		. 
-			TomBot
+			Home
 	if !user
 		form(class='navbar-button' style='padding:0px;margin:0px;height:50px;' action="/login" method="post")
 			input(type='hidden' name='_csrf' value=csrf)
-			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Login' value='Login')
+			button(class='navbar-button' style='height: 50px;cursor: pointer;border:none;color:inherit;font: inherit;' name='Login' value='Login')
 				i(class='fas fa-sign-in-alt')
 				.
 					Login
 	else 
 		form(class='navbar-button' style='padding:0px;margin:0px;height:50px;' action="/logout" method="post")
 			input(type='hidden' name='_csrf' value=csrf)
-			button(class='navbar-button' style='cursor: pointer;border:none;color:inherit;font: inherit;' name='Logout' value='Logout')
+			button(class='navbar-button' style='height: 50px;cursor: pointer;border:none;color:inherit;font: inherit;' name='Logout' value='Logout')
 				i(class='fas fa-sign-out-alt')
 				.
 					Logout

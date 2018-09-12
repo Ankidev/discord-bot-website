@@ -1,4 +1,3 @@
-<script>
 	var socket = io({ transports: ['websocket'] });
 	socket.on('stats', function(data) {
 		updatechart(data);
@@ -28,4 +27,3 @@
 			flash('#stats-streams', streamsColor);
 		}
 	};
-</script>

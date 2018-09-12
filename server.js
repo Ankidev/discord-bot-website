@@ -9,6 +9,7 @@ const session  = require('express-session')
 	, csrf = require('csurf')
 	, bodyParser = require('body-parser')
 	, cookieParser = require('cookie-parser')
+	, morgan = require('morgan')
 
 module.exports = (app, client, config) => {
 
@@ -50,20 +51,23 @@ module.exports = (app, client, config) => {
 		//allow for discord bot listing sites
 		frameguard: false
 	}))
-	app.use(csrf({
-		ignoreMethods: ['GET', 'HEAD', 'OPTIONS']
-	}))
 	app.use('/static/css', express.static(__dirname + '/views/css'));
 	app.use('/static/js', express.static(__dirname + '/views/js'));
 	app.use('/static/img', express.static(__dirname + '/views/img'));
+	app.use(morgan(':method | :url :status :res[content-length]B - :response-time ms'))
 
 	//setup routes
 	const routes = require('./router.js')(client, config);
+	const secureRoutes = require('./secureRouter.js')(client, config);
 	app.use('/', routes);
+	app.use(csrf())
+	app.use('/', secureRoutes);
 	app.use((err, req, res, next) => {
-		if (err.code !== 'EBADCSRFTOKEN') return next(err);
+		if (err.code !== 'EBADCSRFTOKEN') { 
+			console.error(err.stack);
+			return res.status(500).send('Something broke!');
+		}
 		res.status(403);
 		res.send('HALT!'); //invalid csrf token
 	})
-
 }

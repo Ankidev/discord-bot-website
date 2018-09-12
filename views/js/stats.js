@@ -1,4 +1,3 @@
-<script>
 	var dpsUsers = [];
 	var dpsVc = [];
 	var dpsCpu = [];
@@ -248,4 +247,3 @@
 			chart.render();
 		}
 	}
-</script>

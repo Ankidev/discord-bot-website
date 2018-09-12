@@ -1,4 +1,3 @@
-<script type='text/javascript'>
 function setActiveStyleSheet(title) {
   var i, a, main;
   for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
@@ -22,6 +21,10 @@ function togglestyle() {
 	setGraphLine();
 }
 
+function togglenavbar() {
+	$('.navbar-toggle').toggleClass('mobile-shown')
+}
+
 function setGraphLine() {
 	if ($('#chartContainer1').length >= 1 && $.cookie("style")) {
 		if ($.cookie("style") == 'dark') {
@@ -38,5 +41,7 @@ $( document ).ready(function() {
 	button.onclick = function() {
 		togglestyle();
 	};
+	$('.navbar-toggle').click(function() {
+		$('.navbar').toggleClass('mobile-shown');
+	});
 });
-</script>

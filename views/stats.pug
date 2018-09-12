@@ -1,24 +1,25 @@
 html
 	head
 		include head.pug
-		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
-		include ./js/stats.js
+		script(defer src="https://canvasjs.com/assets/script/canvasjs.min.js")
+		script(defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous")
+		script(defer src='/static/js/stats.js' type='text/javascript')
 	body
 		div(class='wrapper')
 			include navbar.pug
 			div(class='info-container' id='info-container')
 				div(class='middle-content')
-					div(class='section')
-						h1(class='section-heading') TomBot Stats
-						hr
-						div(class='section-content' style='text-align:center;')
-							div(id="chartContainer1" class='chart-container' style='position: relative;')
+					div(class='width-wrapper' style='--data-width-wrapper:100%;')
+						div(class='section')
+							h1(class='section-heading') TomBot Stats
 							hr
-							h3 Tabulated Data
-							div(style='display:block;overflow-x:auto;height:288px;')
-								table(class='stats-total-table' style='text-align:left;')
-							hr
-							h3 Network Stats
-							img(src='/static/img/network.png' class='theme-reactive')
+							div(class='section-content' style='text-align:center;')
+								div(id="chartContainer1" class='chart-container' style='position: relative;')
+								hr
+								h3 Tabulated Data
+								div(style='display:block;overflow-x:auto;min-height:288px;')
+									table(class='stats-total-table')
+								hr
+								h3 Network Stats
+								img(src='/static/img/network.png' class='theme-reactive')
 		include footer.pug

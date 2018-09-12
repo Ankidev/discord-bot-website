@@ -1,12 +1,13 @@
 html
 	head
 		include head.pug
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
+		script(defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous")
+		script(defer type='text/javascript' src='/static/js/ministats.js')
 	body
 		div(class='wrapper')
 			include navbar.pug
 			div(class='info-container')
-				div(class='middle-content')
+				div(class='middle-content' style='text-align:center;')
 					div(class='width-wrapper' style='--data-width-wrapper:100%;')
 						div(class='section')
 							h1(class='text-align-center section-heading') TomBot
@@ -24,7 +25,6 @@ html
 									h2(id='stats-streams') #{stats.totalVoiceConnections}
 									.
 										Streams
-								include ./js/ministats.js
 					div(class='width-wrapper')
 						div(class='section')
 							h3(class='text-align-left section-heading') Fun Games
