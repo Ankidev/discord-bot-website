@@ -1,9 +1,12 @@
 	function selectTable(category) {
+		if ($('#selector-' + category).hasClass('is-active')) {
+			return;
+		}
 		$('[id^=selector-]').removeClass('is-active')
 		$('#selector-' + category).addClass('is-active');
 
-		$('[id^=category-]').hide();
-        $('#category-' + category).show();
+		$('[id^=category-]').fadeOut(0);
+        $('#category-' + category).fadeIn(250);
 
         window.location.hash = '#'+category
 	}
