@@ -1,6 +1,6 @@
 	var socket = io({ transports: ['websocket'] });
 	socket.on('stats', function(data) {
-		updatechart(data);
+		updatechart(data.tombot);
 	});
 	var flash = function(elements, color) {
 		var opacity = 100;

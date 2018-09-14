@@ -2,15 +2,15 @@ const express = require('express')
 	, router = express.Router()
 	, websocket = require('./websocket.js')
 	, info  = require('./configs/info.json')
-    , commands = require('./configs/commands.json')
-    , faq = require('./configs/faq.json')
-    , widgets = require('./configs/widgets.json')
+	, commands = require('./configs/commands.json')
+	, faq = require('./configs/faq.json')
+	, widgets = require('./configs/widgets.json')
 	, passport = require('passport')
 	, crypto = require('crypto')
 
 module.exports = function(client, config) {
 
-    const profileDB = client.db(config.statsdbName).collection('points');
+	const votesDB = client.db(config.statsdbName).collection('votes');
 
 	router.post('/patreonwebhook', (req, res) => {
 		if (req.headers && req.headers['x-patreon-signature']) {
@@ -28,7 +28,24 @@ module.exports = function(client, config) {
 		} else {
 			res.status(403).json({error:'Unauthorised'})
 		}
-    });
+	});
+
+	router.post('/dblwebhook', (req, res) => {
+		const auth = req.headers['authorization'];
+		if(!auth) {
+			res.status(403).json({error:'Unauthorised'})
+		} else {
+			if (auth == config.dblAuth) {
+				const botdata = req.body
+				console.info('VOTE  | '+botdata.user);
+				if (botdata.type == 'upvote') {
+					votesDB.replaceOne({_id: botdata.user.toString()},{_id: botdata.user.toString(),value: true,expireAt: new Date((new Date).getTime() + (config.cacheHours*1000*60*60))},{upsert: true});
+				}
+			} else {
+				res.status(403).json({error:'Unauthorised'})
+			}
+		}
+	})
 
 	return router;
 

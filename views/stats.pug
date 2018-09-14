@@ -1,7 +1,6 @@
 html
 	head
 		include head.pug
-		script(defer src="https://canvasjs.com/assets/script/canvasjs.min.js")
 		script(defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous")
 		script(defer src='/static/js/stats.js' type='text/javascript')
 	body
@@ -9,17 +8,20 @@ html
 			include navbar.pug
 			div(class='info-container' id='info-container')
 				div(class='middle-content')
-					div(class='width-wrapper' style='--data-width-wrapper:100%;')
-						div(class='section')
-							h1(class='section-heading') TomBot Stats
-							hr
+						div(class='section' style='margin: 5px;margin-top: 55px;')
 							div(class='section-content' style='text-align:center;')
-								div(id="chartContainer1" class='chart-container' style='position: relative;')
-								hr
-								h3 Tabulated Data
-								div(style='display:block;overflow-x:auto;min-height:288px;')
-									table(class='stats-total-table')
-								hr
+								h3 Cluster Stats
+								div(style='display:block;overflow-x:auto;')
+									table(class='tombot-stats-table' style='text-align:center;white-space:nowrap;')
+								div(class='width-wrapper')
+									h3(style='text-align:center') Database Stats
+									div(style='display:block;overflow-x:auto;')
+										table(class='db-stats-table' style='text-align:center;white-space:nowrap;')
+								div(class='width-wrapper')
+									h3(style='text-align:center') Music Node Stats
+									div(style='display:block;overflow-x:auto')
+										table(class='music-stats-table' style='text-align:center;white-space:nowrap;')
 								h3 Network Stats
-								img(src='/static/img/network.png' class='theme-reactive')
+								div(style='display:block;overflow-x:auto;')
+									table(class='network-stats-table' style='text-align:center;white-space:nowrap;')
 		include footer.pug

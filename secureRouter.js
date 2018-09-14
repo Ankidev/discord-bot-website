@@ -14,7 +14,7 @@ module.exports = function(client, config) {
     const permsDB = client.db(config.statsdbName).collection('permissions');
 
     router.get('/', (req, res) => {
-		const stats = websocket.getStats()
+		const stats = websocket.getStats().tombot
         res.render('homepage', {
             cache: false,
             style: req.cookies.style ? req.cookies.style : config.defaultStyle,
@@ -22,7 +22,7 @@ module.exports = function(client, config) {
             configs: info,
             csrf: req.csrfToken(),
             widgets: widgets,
-            stats: stats[stats.length-1]
+            stats: stats
         });
     });
     router.get('/commands', (req, res) => {
