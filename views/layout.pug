@@ -1,0 +1,15 @@
+html
+	head
+		include head.pug
+		block scripts
+	body
+		block pre-content
+		div(class='wrapper')
+			include navbar.pug
+			div(class='info-container')
+				div(class='middle-content')
+					block content
+		
+		block pre-footer
+		include footer.pug
+		block post-footer
