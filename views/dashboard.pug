@@ -1,18 +1,16 @@
-html
-	head
-		include head.pug
-		include ./js/api.js
-	body
+extends layout.pug
+
+block scripts
+	include ./js/api.js
+	
+block pre-content
 		div(style='overflow:hidden;')
 			div(class='sidebar')
 				each server in user.guilds
 					div(class='icon-container-left')
 						object(data-attribute=server.id class='sidebar-icon-radius' width=50 height=50 data=(server.icon!=null?'https://cdn.discordapp.com/icons/'+server.id+'/'+server.icon+'.png':'https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png') type='image/png')
-		div(class='wrapper')
-			include navbar.pug
-			div(class='info-container' style='margin-left:70px;')
-				div(class='middle-content')
-					div(id='csrf' value=csrf style='display:none;')
-					h1 Under Construction.
-					p(class='server-info')
-		include footer.pug
+
+block content
+	div(id='csrf' value=csrf style='display:none;')
+	h1 Under Construction.
+	p(class='server-info')

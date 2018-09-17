@@ -1,69 +1,65 @@
-html
-	head
-		include head.pug
-		script(defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous")
-		script(defer type='text/javascript' src='/static/js/ministats.js')
-	body
-		div(class='wrapper')
-			include navbar.pug
-			div(class='info-container')
-				div(class='middle-content' style='text-align:center;')
-					div(class='width-wrapper' style='--data-width-wrapper:100%;')
-						div(class='section')
-							h1(class='text-align-center section-heading') TomBot
-							hr
-							div(style='text-align: center;')
-								div(style='display: inline-block;width:33%;margin:0;padding:0;')
-									h2(id='stats-guilds') #{stats.guilds}
-									.
-										Servers
-								div(style='display: inline-block;width:33%;margin:0;padding:0;')
-									h2(id='stats-users') #{stats.users}
-									.
-										Users
-								div(style='display: inline-block;width:33%;margin:0;padding:0;')
-									h2(id='stats-streams') #{stats.totalVoiceConnections}
-									.
-										Streams
-					div(class='width-wrapper')
-						div(class='section')
-							h3(class='text-align-left section-heading') Fun Games
-							hr
-							div(class='section-content')
-								p(class='section-text') Need to spice up your server? TomBot has you covered.
-								p(class='section-text') Earn points by playing Hangman, Cards Against Humanity, Blackjack and Connect4.
-								p(class='section-text') Compete with other Tombot users and see if you can top the leaderboard.
-					div(class='width-wrapper')
-						div(class='section')
-							h3(class='text-align-left section-heading') Robust Music Playback
-							hr
-							div(class='section-content')
-								p(class='section-text') Play music from Youtube, SoundCloud, Spotify and Twitch.
-								p(class='section-text') Support for new audio sources is in the works.
-								p(class='section-text') With advanced playlist management features and endless music commands, TomBot is the last music bot you will ever need.
-					div(class='width-wrapper')
-						div(class='section')
-							h3(class='text-align-left section-heading') Easy Configuration 
-							hr
-							div(class='section-content')
-								p(class='section-text') Adjust TomBot's settings to suit your needs:
-								ul(style='padding:0px;list-style-type: circle;')
-									li Custom prefixes
-									li Queue length, vote skip, music loop
-									li Permissions for users & roles
-					div(class='width-wrapper')
-						div(class='section')
-							h3(class='text-align-left section-heading') Tools & Stats
-							hr
-							div(class='section-content')
-								p(class='section-text') OldSchool Runescape Wiki, GE and Highscores, plus:
-								ul(style='padding:0px;list-style-type: circle;')
-									li Minecraft server status
-									li Fun text commands
-									li Overwatch stats
-					div(class='width-wrapper' style='--data-width-wrapper:none;')
-						div(class='section')
-							div(class='section-content')
-								h3(class='text-align-center section-heading' style='text-align: center;') Like what you see? Vote for TomBot:
-							include widgets.pug
-		include footer.pug
+extends layout.pug
+
+block scripts
+	script(defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous")
+	script(defer type='text/javascript' src='/static/js/ministats.js')
+
+block content
+	div(class='width-wrapper' style='--data-width-wrapper:100%;')
+		div(class='section')
+			h1(class='text-align-center section-heading') TomBot
+			hr
+			div(style='text-align: center;')
+				div(style='display: inline-block;width:33%;margin:0;padding:0;')
+					h2(id='stats-guilds') #{stats.guilds}
+					.
+						Servers
+				div(style='display: inline-block;width:33%;margin:0;padding:0;')
+					h2(id='stats-users') #{stats.users}
+					.
+						Users
+				div(style='display: inline-block;width:33%;margin:0;padding:0;')
+					h2(id='stats-streams') #{stats.totalVoiceConnections}
+					.
+						Streams
+	div(class='width-wrapper')
+		div(class='section')
+			h3(class='text-align-left section-heading') Fun Games
+			hr
+			div(class='section-content')
+				p(class='section-text') Need to spice up your server? TomBot has you covered.
+				p(class='section-text') Earn points by playing Hangman, Cards Against Humanity, Blackjack and Connect4.
+				p(class='section-text') Compete with other Tombot users and see if you can top the leaderboard.
+	div(class='width-wrapper')
+		div(class='section')
+			h3(class='text-align-left section-heading') Robust Music Playback
+			hr
+			div(class='section-content')
+				p(class='section-text') Play music from Youtube, SoundCloud, Spotify and Twitch.
+				p(class='section-text') Support for new audio sources is in the works.
+				p(class='section-text') With advanced playlist management features and endless music commands, TomBot is the last music bot you will ever need.
+	div(class='width-wrapper')
+		div(class='section')
+			h3(class='text-align-left section-heading') Easy Configuration 
+			hr
+			div(class='section-content')
+				p(class='section-text') Adjust TomBot's settings to suit your needs:
+				ul(style='padding:0px;list-style-type: circle;')
+					li Custom prefixes
+					li Queue length, vote skip, music loop
+					li Permissions for users & roles
+	div(class='width-wrapper')
+		div(class='section')
+			h3(class='text-align-left section-heading') Tools & Stats
+			hr
+			div(class='section-content')
+				p(class='section-text') OldSchool Runescape Wiki, GE and Highscores, plus:
+				ul(style='padding:0px;list-style-type: circle;')
+					li Minecraft server status
+					li Fun text commands
+					li Overwatch stats
+	div(class='width-wrapper' style='--data-width-wrapper:none;')
+		div(class='section')
+			div(class='section-content')
+				h3(class='text-align-center section-heading' style='text-align: center;') Like what you see? Vote for TomBot:
+			include widgets.pug

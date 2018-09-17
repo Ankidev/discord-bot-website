@@ -1,14 +1,8 @@
-html
-	head
-		include head.pug
-	body
-		div(class='wrapper')
-			include navbar.pug
-			div(class='info-container')
-				div(class='middle-content')
-					div(class='section' style='margin: 5px;margin-top: 55px;')
-						h1(class='section-heading') Command Docs
-						hr
-						include commandcategories.pug
-						script(defer src='/static/js/categoryscript.js' type='text/javascript')
-		include footer.pug
+extends layout.pug
+
+block content
+	div(class='section' style='margin: 5px;margin-top: 55px;')
+		h1(class='section-heading') Command Docs
+		hr
+		include commandcategories.pug
+		script(defer src='/static/js/categoryscript.js' type='text/javascript')
