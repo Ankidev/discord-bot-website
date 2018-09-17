@@ -23,7 +23,7 @@
 			$('<td>').text('All Time'),
 			$('<td>').text((data.total.rx/1024/1024).toFixed()+'GB'),
 			$('<td>').text((data.total.tx/1024/1024).toFixed()+'GB'),
-			$('<td>').text(((data.total.rx+data.total.tx)/1024/1024).toFixed()+'GB'),
+			$('<td>').text(((data.total.rx/1024/1024)+(data.total.tx/1024/1024)).toFixed()+'GB'),
         ).appendTo(statdiv);
 
 		$.each(data.days, function(i, item) {
@@ -31,7 +31,7 @@
 	            $('<td>').text(item.date.day+' / '+item.date.month+' / '+item.date.year),
 	            $('<td>').text((item.rx/1024/1024).toFixed()+'GB'),
 	            $('<td>').text((item.tx/1024/1024).toFixed()+'GB'),
-	            $('<td>').text(((item.rx+item.rx)/1024/1024).toFixed()+'GB'),
+	            $('<td>').text(((item.rx/1024/1024)+(item.tx/1024/1024)).toFixed()+'GB'),
 	        ).appendTo(statdiv);
 		})
 	}
