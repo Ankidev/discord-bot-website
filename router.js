@@ -7,6 +7,7 @@ const express = require('express')
 	, widgets = require('./configs/widgets.json')
 	, passport = require('passport')
 	, crypto = require('crypto')
+	, fetch = require('node-fetch')
 
 module.exports = function(client, config) {
 
@@ -38,14 +39,24 @@ module.exports = function(client, config) {
 			if (auth == config.dblAuth) {
 				const botdata = req.body
 				console.info('VOTE  | '+botdata.user);
-				if (botdata.type == 'upvote') {
-					votesDB.replaceOne({_id: botdata.user.toString()},{_id: botdata.user.toString(),value: true,expireAt: new Date((new Date).getTime() + (config.cacheHours*1000*60*60))},{upsert: true});
-				}
+				votesDB.replaceOne({_id: botdata.user.toString()},{_id: botdata.user.toString(),value: true,expireAt: new Date((new Date).getTime() + (config.cacheHours*1000*60*60))},{upsert: true});
+				const body = {embeds: [{
+					title: 'Upvote!',
+					description: `Thank you <@!${botdata.user}> for supporting TomBot!`,
+					footer: {text: new Date().toLocaleString()}
+				}], username: 'TomBot'};
+				fetch(`https://discordapp.com/api/webhooks/${config.webhookID}/${config.webhookToken}`, {
+					method: 'POST',
+					body: JSON.stringify(body),
+					headers: { 'Content-Type': 'application/json' }
+				});
 			} else {
 				res.status(403).json({error:'Unauthorised'})
 			}
 		}
 	})
+
+	
 
 	return router;
 
