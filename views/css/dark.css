@@ -1,49 +1,31 @@
 	html {
-		background-color:#2C2F33;
+		background-color: rgb(16, 20, 23);
 		color:white;
+	}
+	.navbar, .footer {
+		background-color: rgb(16, 20, 23);
 	}
     .theme-reactive {
         filter: grayscale(100%) invert(100%);
     }
-	.navbar {
-		background-color:#23272A;
-	}
-	.sidebar {
-		background-color:#23272A;
-	}
-	.footer {
-		background-color:#23272A;
-	}
-	.info-container {
-		color: #ccc;
-	}
 	.home-button, .navbar-button {
-		background-color: #7289DA;
+		background-color: rgb(16, 20, 23);
 	}
-	.table-selector {
-		background-color: #7289DA;
+	html, body, :not([style*="color:"]) {
+		color: rgb(167, 158, 139);
 	}
-	a {
-		color:white;
+	.footer a {
+		color: rgb(167, 158, 139);
 	}
-	.table-selector:hover, a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
-		background-color: #7e9bff;
+	.navbar * {
+		color: rgb(142, 193, 217)!important;
 	}
-	table, th, td {
-		border-bottom: 1px solid #23272A;
+	h1:not([style*="color:"]), h2:not([style*="color:"]), h3:not([style*="color:"]), h4:not([style*="color:"]), h5:not([style*="color:"]), h6:not([style*="color:"]) {
+		color: rgb(234, 146, 109);
 	}
-	.cover-trial {
-		/*background: #23272a;*/
+	html, body, :not([style*="border-color:"]), ::before, ::after {
+		border-color: rgb(91, 118, 130);
 	}
-	.section {
-		/*background: #23272a;*/
-	}
-	.section-tile {
-		/*background: #2c2f33;*/
-	}
-	.section-heading {
-		color:#fff;
-	}
-	h2 {
-		color:#fff;
+	.category-selector {
+		background-color: rgb(16, 20, 23);
 	}

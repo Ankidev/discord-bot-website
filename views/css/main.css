@@ -138,8 +138,8 @@
 		-webkit-transition:.3s;
 		transition:.3s;
 	}
-	.category-selector:hover, a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
-		background-color: #7e9bff;
+	.table-selector:hover, .category-selector:hover, a.home-button:hover, a.navbar-button:hover, button.navbar-button:hover {
+		box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1)
 	}
 	.wrapper {
 		flex: 1 0 auto;
@@ -262,7 +262,7 @@
 			padding: 0px;
 		}
 		.navbar {
-			background-color: #7289DA !important;
+			/*background-color: #7289DA !important;*/
 			overflow: hidden;
 			transition: max-height 0.3s;
 			box-sizing: border-box;

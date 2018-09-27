@@ -1,5 +1,7 @@
 	var socket = io({ transports: ['websocket'] });
 	socket.on('statstart', function(data) {
+		$('#loading-message').hide();
+		$('.section-content').css('display', 'block');
 		tombotchart(data.tombot)
 		dbchart(data.mongodb)
 		lavalinkchart(data.lavalink)
