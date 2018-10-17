@@ -57,11 +57,12 @@ module.exports = (app, client, config) => {
 	app.use(morgan(':method HTTP/:http-version :url Status::status Content-Length::res[content-length] :remote-addr ":referrer" ":user-agent"'))
 
 	//setup routes
-	const routes = require('./router.js')(client, config);
-	const secureRoutes = require('./secureRouter.js')(client, config);
-	app.use('/', routes);
+	const pages = require('./routes/pages.js')(client, config);
+	const webhooks = require('./routes/webhooks.js')(client, config);
+	app.use('/', webhooks);
 	app.use(csrf())
-	app.use('/', secureRoutes);
+	app.use('/', pages);
+
 	app.use((err, req, res, next) => {
 		if (err.code !== 'EBADCSRFTOKEN') { 
 			console.error(err.stack);

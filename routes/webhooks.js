@@ -1,10 +1,10 @@
 const express = require('express')
 	, router = express.Router()
-	, websocket = require('./websocket.js')
-	, info  = require('./configs/info.json')
-	, commands = require('./configs/commands.json')
-	, faq = require('./configs/faq.json')
-	, widgets = require('./configs/widgets.json')
+	, websocket = require('../websocket.js')
+	, info  = require('../configs/info.json')
+	, commands = require('../configs/commands.json')
+	, faq = require('../configs/faq.json')
+	, widgets = require('../configs/widgets.json')
 	, passport = require('passport')
 	, crypto = require('crypto')
 	, fetch = require('node-fetch')
@@ -55,8 +55,6 @@ module.exports = function(client, config) {
 			}
 		}
 	})
-
-	
 
 	return router;
 
