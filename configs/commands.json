@@ -53,8 +53,8 @@
 		"commands": [
 			{
 				"name": "play",
-				"args": "<URL or search terms>",
-				"description": "play music from a link or search terms",
+				"args": "[-now] <URL or search terms>",
+				"description": "play music from a link or search terms, start with -now to add to start of queue instead of end",
 				"examples": [
 					">play darude sandstorm",
 					">play https://youtu.be/y6120QOlsfU",
