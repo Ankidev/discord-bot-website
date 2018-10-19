@@ -37,60 +37,60 @@ module.exports = function(client, config) {
 		const auth = req.headers['authorization'];
 		if(!auth) {
 			res.status(403).json({error:'Unauthorised'})
-		} else {
-			if (auth == config.donateSecret) {
-				const donateData = req.body
-				const key = donateData.txn_id
-				const oldDonateData = await donateDB.findOne({_id: key});
-				donateData._id = donateData.txn_id
-				delete donateData.txn_id;
-				try {
-					if (oldDonateData) {
-						donateData.tokens = (donateData.status != 'completed' ? 0 : oldDonateData.tokens)
-						donateData.guildIDs = oldDonateData.guildIDs
-						await donateDB.replaceOne({_id: key}, donateData)
+		} else if (auth == config.donateSecret) {
+			const donateData = req.body
+			const key = donateData.txn_id
+			const oldDonateData = await donateDB.findOne({_id: key});
+			donateData._id = donateData.txn_id
+			delete donateData.txn_id;
+			try {
+				if (oldDonateData) {
+					donateData.tokens = (donateData.status != 'completed' ? 0 : oldDonateData.tokens)
+					donateData.guildIDs = oldDonateData.guildIDs
+					await donateDB.replaceOne({_id: key}, donateData)
+				} else {
+					donateData.guildIDs = []
+					if (+donateData.price == 3.99) {
+						donateData.tokens = 1; //3.99 per token
+					} else if (+donateData.price >= 8.99) {
+						donateData.tokens = 3; //2.99 per token
 					} else {
-						donateData.guildIDs = []
-						if (+donateData.price == 3.99) {
-							donateData.tokens = 1; //3.99 per token
-						} else if (+donateData.price >= 8.99) {
-							donateData.tokens = 3; //2.99 per token
-						} else {
-							donateData.tokens = 0;
-						}
-						await donateDB.insertOne(donateData)
+						donateData.tokens = 0;
 					}
-				} catch(e) {
-					return console.error('DONATION ERROR', e)
+					await donateDB.insertOne(donateData)
 				}
-				console.log('\nSUCCESSFUL DONATEBOT WEBHOOK:\n', donateData)
-				switch (donateData.status) {
-					case 'completed':
-						// NO NEED TO DO ANYTHING -- HANDLE THE REST IN COMMAND
-						break;
-					case 'reversed':
-						const blacklistData = donateData.guildIDs.map(x => { return {_id:x, value:'donation chargeback'} });
-/* might cause peple to donate for somebody else and charges back
-						if (donateData.buyer_id) {
-							blacklistData.push({_id:donateData.buyer_id, value:'donation chargeback'})
-						}
-*/
-						if (blacklistData.length > 0) {
-							blacklistDB.insertMany(blacklistData)
-						}
-						break;
-					case 'refunded':
-						// NEED IPC TO HANDLE REFUNDS
-						break;
-					case 'sub_ended':
-						// NOT BUSINESS PAYPAL SO NO SUB HANDLING
-						break;
-					default:
-						console.warn('Unexpected donatebot status: ', donateData.status);
-				}
-			} else {
-				res.status(403).json({error:'Unauthorised'})
+			} catch(e) {
+				console.error('DONATION ERROR', e)
+				return res.status(403).json({error:'DB error'})
 			}
+			console.log('\nSUCCESSFUL DONATEBOT WEBHOOK:\n', donateData)
+			switch (donateData.status) {
+				case 'completed':
+					// NO NEED TO DO ANYTHING -- HANDLE THE REST IN COMMAND
+					break;
+				case 'reversed':
+					const blacklistData = donateData.guildIDs.map(x => { return {_id:x, value:'donation chargeback'} });
+/* might cause peple to donate for somebody else and charges back
+					if (donateData.buyer_id) {
+						blacklistData.push({_id:donateData.buyer_id, value:'donation chargeback'})
+					}
+*/
+					if (blacklistData.length > 0) {
+						blacklistDB.insertMany(blacklistData)
+					}
+					break;
+				case 'refunded':
+					// NEED IPC TO HANDLE REFUNDS
+					break;
+				case 'sub_ended':
+					// NOT BUSINESS PAYPAL SO NO SUB HANDLING
+					break;
+				default:
+					console.warn('Unexpected donatebot status: ', donateData.status);
+			}
+			return res.status(200).json({success:true})
+		} else {
+			return res.status(403).json({error:'Unauthorised'})
 		}
 	});
 
