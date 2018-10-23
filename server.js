@@ -51,9 +51,7 @@ module.exports = (app, client, config) => {
 		//allow for discord bot listing sites
 		frameguard: false
 	}))
-	app.use('/static/css', express.static(__dirname + '/views/css'));
-	app.use('/static/js', express.static(__dirname + '/views/js'));
-	app.use('/static/img', express.static(__dirname + '/views/img'));
+
 	app.use(morgan(':method HTTP/:http-version :url Status::status Content-Length::res[content-length] :remote-addr ":referrer" ":user-agent"'))
 
 	//setup routes
