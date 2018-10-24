@@ -9,7 +9,6 @@ const session  = require('express-session')
 	, csrf = require('csurf')
 	, bodyParser = require('body-parser')
 	, cookieParser = require('cookie-parser')
-	, morgan = require('morgan')
 
 module.exports = (app, client, config) => {
 
@@ -51,8 +50,6 @@ module.exports = (app, client, config) => {
 		//allow for discord bot listing sites
 		frameguard: false
 	}))
-
-	app.use(morgan(':method HTTP/:http-version :url Status::status Content-Length::res[content-length] :remote-addr ":referrer" ":user-agent"'))
 
 	//setup routes
 	const pages = require('./routes/pages.js')(client, config);

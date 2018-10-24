@@ -69,7 +69,7 @@ module.exports = function(client, config) {
 					// NO NEED TO DO ANYTHING -- HANDLE THE REST IN COMMAND
 					break;
 				case 'reversed':
-					const blacklistData = donateData.guildIDs.map(x => { return {_id:x, value:'donation chargeback'} });
+					const blacklistData = donateData.guildIDs.map(x => { return {_id:x.id, value:'donation chargeback'} });
 /* might cause peple to donate for somebody else and charges back
 					if (donateData.buyer_id) {
 						blacklistData.push({_id:donateData.buyer_id, value:'donation chargeback'})
