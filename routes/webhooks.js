@@ -113,6 +113,7 @@ module.exports = function(client, config) {
 					body: JSON.stringify(body),
 					headers: { 'Content-Type': 'application/json' }
 				});
+				res.json({success:true})
 			} else {
 				res.status(403).json({error:'Unauthorised'})
 			}
