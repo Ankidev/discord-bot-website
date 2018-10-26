@@ -14,6 +14,7 @@ module.exports = function(client, config) {
 	const votesDB = client.db(config.statsdbName).collection('votes');
 	const donateDB = client.db(config.statsdbName).collection('donate');
 	const blacklistDB = client.db(config.statsdbName).collection('blacklist');
+	const pointsDB = client.db(config.statsdbName).collection('points');
 
 	router.post('/patreonwebhook', (req, res) => {
 		if (req.headers && req.headers['x-patreon-signature']) {
@@ -103,6 +104,7 @@ module.exports = function(client, config) {
 				const botdata = req.body
 				console.info('VOTE  | '+botdata.user);
 				votesDB.replaceOne({_id: botdata.user.toString()},{_id: botdata.user.toString(),value: true,expireAt: new Date((new Date).getTime() + (config.cacheHours*1000*60*60))},{upsert: true});
+				pointsDB.updateOne({_id: botdata.user.toString()},{$inc:{votes: 1}});
 				const body = {embeds: [{
 					title: 'Upvote!',
 					description: `Thank you <@!${botdata.user}> for supporting TomBot!`,
