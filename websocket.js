@@ -20,18 +20,6 @@ module.exports = {
 						const newstats = change.updateDescription.updatedFields['value.tombot'];
 		                this.stats.tombot = newstats;
 		                io.emit('stats', newstats);
-					} else if (update === 'value.lavalink') {
-						const newstats = change.updateDescription.updatedFields['value.lavalink'];
-						this.stats.lavalink = newstats;
-	                    io.emit('lavalinkStats', newstats);
-					} else if (update === 'value.mongodb') {
-						const newstats = change.updateDescription.updatedFields['value.mongodb'];
-						this.stats.mongodb = newstats;
-	                    io.emit('dbStats', newstats);
-					} else if (update === 'value.network') {
-						const newstats = change.updateDescription.updatedFields['value.network'];
-						this.stats.network = newstats;
-	                    io.emit('networkStats', newstats);
 			        }
 				}
 			}
