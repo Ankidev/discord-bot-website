@@ -98,6 +98,15 @@
 				]
 			},
 			{
+				"name": "eq",
+				"args": "[reset]",
+				"description": "Open or reset the EQ (equalizer). This allows you to adjust the audio to bass boost, etc. Controlled with reactions.",
+				"examples": [
+					">eq",
+					">eq reset"
+				]
+			},
+			{
 				"name": "queue",
 				"args": "[number]",
 				"description": "see music queue",
