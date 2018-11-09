@@ -44,13 +44,7 @@ module.exports = function(client, config) {
         });
     });
     router.get('/stats', (req, res) => {
-        res.render('stats', {
-            cache: true,
-            style: req.cookies.style || config.defaultStyle,
-            configs: info,
-            user: req.user,
-            csrf: req.csrfToken()
-        });
+		res.redirect('https://p.datadoghq.com/sb/221cba9d3-d4cbc9ce9de358694de7dc7c2bc88838')
     });
     router.get('/faq', (req, res) => {
         res.render('faq', {
